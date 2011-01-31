@@ -46,12 +46,10 @@ import org.openscience.cdk.smsd.tools.TimeManager;
 public class MCSPlus {
 
     /**
-    * Default constructor added 
-    */
-    public MCSPlus(){
-        
+     * Default constructor added 
+     */
+    public MCSPlus() {
     }
-
     private static TimeManager timeManager = null;
 
     /**
@@ -71,7 +69,7 @@ public class MCSPlus {
     /**
      * @param aTimeManager the timeManager to set
      */
-    protected synchronized static void setTimeManager(TimeManager aTimeManager) {
+    public synchronized static void setTimeManager(TimeManager aTimeManager) {
         TimeOut.getInstance().setTimeOutFlag(false);
         timeManager = aTimeManager;
     }
@@ -91,19 +89,21 @@ public class MCSPlus {
             GenerateCompatibilityGraph gcg = new GenerateCompatibilityGraph(ac1, ac2, shouldMatchBonds);
             List<Integer> comp_graph_nodes = gcg.getCompGraphNodes();
 
-            List<Integer> C_edges = gcg.getCEgdes();
-            List<Integer> D_edges = gcg.getDEgdes();
+            List<Integer> cEdges = gcg.getCEgdes();
+            List<Integer> dEdges = gcg.getDEgdes();
 
 //            System.err.println("**************************************************");
-//            System.err.println("C_edges: " + C_edges.size());
-//            System.out.println("D_edges: " + D_edges.size());
+//            System.err.println("C_edges: " + cEdges.size());
+//            System.err.println("D_edges: " + dEdges.size());
 
-            BKKCKCF init = new BKKCKCF(comp_graph_nodes, C_edges, D_edges);
+            BKKCKCF init = new BKKCKCF(comp_graph_nodes, cEdges, dEdges);
+//            BronKerboschKochCliqueFinder init = new BronKerboschKochCliqueFinder(comp_graph_nodes, cEdges, dEdges);
             maxCliqueSet = init.getMaxCliqueSet();
 
+//            System.err.println("Max_Cliques_Set: " + maxCliqueSet);
+//            System.err.println("Best Clique Size: " + init.getBestCliqueSize());
 //            System.err.println("**************************************************");
-//            System.err.println("Max_Cliques_Set: " + maxCliqueSet.size());
-//            System.out.println("Best Clique Size: " + init.getBestCliqueSize());
+
 
             //clear all the compatibility graph content
             gcg.clear();

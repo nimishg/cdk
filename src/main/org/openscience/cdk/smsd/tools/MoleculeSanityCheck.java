@@ -38,6 +38,8 @@ import org.openscience.cdk.interfaces.IRing;
 import org.openscience.cdk.interfaces.IRingSet;
 import org.openscience.cdk.ringsearch.AllRingsFinder;
 import org.openscience.cdk.tools.CDKHydrogenAdder;
+import org.openscience.cdk.tools.ILoggingTool;
+import org.openscience.cdk.tools.LoggingToolFactory;
 import org.openscience.cdk.tools.manipulator.RingSetManipulator;
 
 /**
@@ -48,6 +50,9 @@ import org.openscience.cdk.tools.manipulator.RingSetManipulator;
  */
 @TestClass("org.openscience.cdk.smsd.tools.MoleculeSanityCheckTest")
 public class MoleculeSanityCheck {
+
+    private static final ILoggingTool logger =
+            LoggingToolFactory.createLoggingTool(MoleculeSanityCheck.class);
 
     /**
      * Modules for cleaning a molecule
@@ -92,7 +97,7 @@ public class MoleculeSanityCheck {
 
     /**
      * Fixes Aromaticity of the molecule
-     * i.e. need to find rings and aromaticity again since added H's
+     * i.exception. need to find rings and aromaticity again since added H's
      * @param mol
      */
     @TestMethod("testFixAromaticity")
@@ -103,14 +108,20 @@ public class MoleculeSanityCheck {
         try {
             AllRingsFinder arf = new AllRingsFinder();
             ringSet = arf.findAllRings(mol);
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (Exception exception) {
+            logger.warn("ERROR: ", exception.getMessage());
+            logger.debug(exception);
+        }
+
+
+        // figure out which atoms are in aromatic rings:
+        try {
+            CDKHydrogenAdder cdk = CDKHydrogenAdder.getInstance(DefaultChemObjectBuilder.getInstance());
+            cdk.addImplicitHydrogens(mol);
+        } catch (Exception exception) {
         }
 
         try {
-            // figure out which atoms are in aromatic rings:
-            CDKHydrogenAdder cdk = CDKHydrogenAdder.getInstance(DefaultChemObjectBuilder.getInstance());
-            cdk.addImplicitHydrogens(mol);
             ExtAtomContainerManipulator.percieveAtomTypesAndConfigureAtoms(mol);
 
             CDKHueckelAromaticityDetector.detectAromaticity(mol);
@@ -137,8 +148,9 @@ public class MoleculeSanityCheck {
                     }
                 }
             }
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (Exception ex) {
+            logger.warn("ERROR: ", ex.getMessage());
+            logger.debug(ex);
         }
     }
 }

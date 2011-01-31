@@ -1,4 +1,4 @@
-/* Copyright (C) 2010  Gilleain Torrance <gilleain.torrance@gmail.com>
+/* Copyright (C) 2009-2010  Syed Asad Rahman <asad@ebi.ac.uk>
  *
  * Contact: cdk-devel@lists.sourceforge.net
  *
@@ -20,39 +20,45 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA.
  */
+package org.openscience.cdk.smsd.filters;
 
-package org.openscience.cdk.smsd.labelling;
+import java.util.List;
+import java.util.Map;
 
-import org.openscience.cdk.graph.invariant.CanonicalLabeler;
+import org.openscience.cdk.exception.CDKException;
 import org.openscience.cdk.interfaces.IAtom;
-import org.openscience.cdk.interfaces.IAtomContainer;
-import org.openscience.cdk.smiles.InvPair;
 
 /**
+ * A filter on SMSD results.
+ *
+ * @param <T>
+ *
+ * @author Syed Asad Rahman <asad@ebi.ac.uk>
+ * @author maclean
  * @cdk.module smsd
- * @cdk.githash
  */
+public interface IChemicalFilter<T> {
 
-public class CanonicalLabellingAdaptor implements ICanonicalMoleculeLabeller {
-    
-    @Override
-    public IAtomContainer getCanonicalMolecule(IAtomContainer container) {
-        return AtomContainerAtomPermutor.permute(
-                getCanonicalPermutation(container), container);
-    }
+    /**
+     * Calculates a score for each MCS, and sorts the results on that score,
+     * returning the best.
+     *
+     * @param allMCS
+     * @param allAtomMCS
+     * @param selectionMap
+     * @return
+     * @throws CDKException
+     */
+    public T sortResults(
+            Map<Integer, Map<Integer, Integer>> allMCS,
+            Map<Integer, Map<IAtom, IAtom>> allAtomMCS,
+            Map<Integer, T> selectionMap) throws CDKException;
 
-    @Override
-    public int[] getCanonicalPermutation(IAtomContainer container) {
-        CanonicalLabeler labeler = new CanonicalLabeler();
-        labeler.canonLabel(container);
-        int n = container.getAtomCount();
-        int[] perm = new int[n];
-        for (int i = 0; i < n; i++) {
-            IAtom a = container.getAtom(i);
-            int x = ((Long) a.getProperty(InvPair.CANONICAL_LABEL)).intValue(); 
-            perm[i] = x - 1;
-        }
-        return perm;
-    }
+    public List<T> getScores();
 
+    public void clearScores();
+
+    public void addScore(int counter, T value);
+
+    public void fillMap(Map<Integer, T> map);
 }

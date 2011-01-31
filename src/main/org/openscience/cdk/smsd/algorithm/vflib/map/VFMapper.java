@@ -227,8 +227,8 @@ public class VFMapper implements IMapper {
         }
 
         if (hasMap(state.getMap())) {
-                state.backTrack();
-            }
+            state.backTrack();
+        }
 
         if (state.isGoal()) {
             Map<INode, IAtom> map = state.getMap();

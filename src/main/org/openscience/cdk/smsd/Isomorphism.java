@@ -41,6 +41,8 @@ import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IBond;
 import org.openscience.cdk.interfaces.IMolecule;
 import org.openscience.cdk.isomorphism.matchers.IQueryAtomContainer;
+import org.openscience.cdk.tools.ILoggingTool;
+import org.openscience.cdk.tools.LoggingToolFactory;
 import org.openscience.cdk.smsd.algorithm.mcsplus.MCSPlusHandler;
 import org.openscience.cdk.smsd.algorithm.rgraph.CDKMCSHandler;
 import org.openscience.cdk.smsd.algorithm.rgraph.CDKSubGraphHandler;
@@ -53,8 +55,6 @@ import org.openscience.cdk.smsd.global.TimeOut;
 import org.openscience.cdk.smsd.interfaces.AbstractMCS;
 import org.openscience.cdk.smsd.interfaces.Algorithm;
 import org.openscience.cdk.smsd.tools.MolHandler;
-import org.openscience.cdk.tools.ILoggingTool;
-import org.openscience.cdk.tools.LoggingToolFactory;
 
 /**
  *  <p>This class implements the Isomorphism- a multipurpose structure comparison tool.
@@ -653,6 +653,17 @@ public final class Isomorphism extends AbstractMCS implements Serializable {
         if (firstAtomMCS != null) {
             ChemicalFilters chemFilter = new ChemicalFilters(allMCS, allAtomMCS, firstSolution, firstAtomMCS, getReactantMolecule(), getProductMolecule());
 
+
+
+            if (energyFilter) {
+                try {
+                    chemFilter.sortResultsByEnergies();
+                    this.bEnergies = chemFilter.getSortedEnergy();
+                } catch (CDKException ex) {
+                    Logger.error(Level.SEVERE, null, ex);
+                }
+            }
+
             if (stereoFilter && firstAtomMCS.size() > 1) {
                 try {
                     chemFilter.sortResultsByStereoAndBondMatch();
@@ -661,17 +672,10 @@ public final class Isomorphism extends AbstractMCS implements Serializable {
                     Logger.error(Level.SEVERE, null, ex);
                 }
             }
+            
             if (fragmentFilter) {
                 chemFilter.sortResultsByFragments();
                 this.fragmentSize = chemFilter.getSortedFragment();
-            }
-            if (energyFilter) {
-                try {
-                    chemFilter.sortResultsByEnergies();
-                    this.bEnergies = chemFilter.getSortedEnergy();
-                } catch (CDKException ex) {
-                    Logger.error(Level.SEVERE, null, ex);
-                }
             }
         }
     }

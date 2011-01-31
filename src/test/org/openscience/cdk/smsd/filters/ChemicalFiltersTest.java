@@ -23,8 +23,6 @@
  */
 package org.openscience.cdk.smsd.filters;
 
-import java.util.Map;
-import java.util.TreeMap;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -134,49 +132,6 @@ public class ChemicalFiltersTest {
     }
 
     /**
-     * Test of sortMapByValueInAccendingOrder method, of class ChemicalFilters.
-     */
-    @Test
-    public void testSortMapByValueInAccendingOrder() {
-        System.out.println("sortMapByValueInAccendingOrder");
-
-        Map<Integer, Double> map = new TreeMap<Integer, Double>();
-        map.put(1, 3.0);
-        map.put(2, 2.0);
-        map.put(3, 1.0);
-        map.put(4, 4.0);
-        Map<Integer, Double> expResult = new TreeMap<Integer, Double>();
-        expResult.put(3, 1.0);
-        expResult.put(2, 2.0);
-        expResult.put(1, 3.0);
-        expResult.put(4, 4.0);
-
-        Map<Integer, Double> result = ChemicalFilters.sortMapByValueInAccendingOrder(map);
-        assertEquals(expResult, result);
-    }
-
-    /**
-     * Test of sortMapByValueInDecendingOrder method, of class ChemicalFilters.
-     */
-    @Test
-    public void testSortMapByValueInDecendingOrder() {
-        System.out.println("sortMapByValueInDecendingOrder");
-        Map<Integer, Double> map = new TreeMap<Integer, Double>();
-        map.put(1, 3.0);
-        map.put(2, 2.0);
-        map.put(3, 1.0);
-        map.put(4, 4.0);
-        Map<Integer, Double> expResult = new TreeMap<Integer, Double>();
-        expResult.put(4, 4.0);
-        expResult.put(1, 3.0);
-        expResult.put(2, 2.0);
-        expResult.put(3, 1.0);
-
-        Map<Integer, Double> result = ChemicalFilters.sortMapByValueInDecendingOrder(map);
-        assertEquals(expResult, result);
-    }
-
-    /**
      * Test of getSortedEnergy method, of class ChemicalFilters.
      * @throws InvalidSmilesException
      * @throws CDKException 
@@ -229,7 +184,7 @@ public class ChemicalFiltersTest {
         Isomorphism smsd1 = new Isomorphism(Algorithm.DEFAULT, false);
         smsd1.init(queryac, target, true, true);
         smsd1.setChemFilters(true, false, false);
-        Integer score = 1048;
+        Integer score = 48;
         assertEquals(score, smsd1.getStereoScore(0));
     }
 }

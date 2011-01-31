@@ -245,22 +245,9 @@ public class BondEnergies {
      */
     @TestMethod("testGetEnergies")
     public int getEnergies(IAtom sourceAtom, IAtom targetAtom, Order bondOrder) {
-        int D_kJ_per_mol = -1;
-
-        for (Map.Entry<Integer, BondEnergy> entry : bondEngergies.entrySet()) {
-            BondEnergy bondEnergy = entry.getValue();
-            String atom1 = bondEnergy.getSymbolFirstAtom();
-            String atom2 = bondEnergy.getSymbolSecondAtom();
-            if ((atom1.equalsIgnoreCase(sourceAtom.getSymbol()) && atom2.equalsIgnoreCase(targetAtom.getSymbol()))
-                    || (atom2.equalsIgnoreCase(sourceAtom.getSymbol()) && atom1.equalsIgnoreCase(targetAtom.getSymbol()))) {
-
-                Order order = bondEnergy.getBondOrder();
-                if (order.compareTo(bondOrder) == 0) {
-                    D_kJ_per_mol = bondEnergy.getEnergy();
-                }
-            }
-        }
-        return D_kJ_per_mol;
+        String sourceAtomSymbol = sourceAtom.getSymbol();
+        String targetAtomSymbol = targetAtom.getSymbol();
+        return getEnergies(sourceAtomSymbol, targetAtomSymbol, bondOrder);
     }
 
     /**
@@ -274,6 +261,13 @@ public class BondEnergies {
     public int getEnergies(String sourceAtom, String targetAtom, Order bondOrder) {
         int D_kJ_per_mol = -1;
 
+        if (sourceAtom.equalsIgnoreCase("R")) {
+            sourceAtom = "C";
+        }
+        if (targetAtom.equalsIgnoreCase("R")) {
+            targetAtom = "C";
+        }
+
         for (Map.Entry<Integer, BondEnergy> entry : bondEngergies.entrySet()) {
             BondEnergy bondEnergy = entry.getValue();
             String atom1 = bondEnergy.getSymbolFirstAtom();
@@ -282,7 +276,7 @@ public class BondEnergies {
                     || (atom2.equalsIgnoreCase(sourceAtom) && atom1.equalsIgnoreCase(targetAtom))) {
 
                 Order order = bondEnergy.getBondOrder();
-                if (order.compareTo(bondOrder) == 0) {
+                if (order != null && bondOrder != null && order.compareTo(bondOrder) == 0) {
                     D_kJ_per_mol = bondEnergy.getEnergy();
                 }
             }

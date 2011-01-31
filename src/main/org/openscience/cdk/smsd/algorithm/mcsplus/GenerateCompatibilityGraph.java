@@ -60,10 +60,9 @@ public final class GenerateCompatibilityGraph {
     private boolean shouldMatchBonds = false;
 
     /**
-    * Default constructor added 
-    */
-    public GenerateCompatibilityGraph(){
-        
+     * Default constructor added 
+     */
+    public GenerateCompatibilityGraph() {
     }
 
     /**
@@ -199,6 +198,13 @@ public final class GenerateCompatibilityGraph {
             }
             molA_nodes++;
         }
+
+//        System.out.println("compatibility graph nodes:");
+//        Iterator it = compGraphNodes.iterator();
+//        while (it.hasNext()) {
+//            System.err.println((Integer) it.next() + " " + (Integer) it.next() + " " + (Integer) it.next());
+//        }
+//        System.out.println("");
         return 0;
     }
 
@@ -209,29 +215,69 @@ public final class GenerateCompatibilityGraph {
      * @throws IOException
      */
     protected int compatibilityGraph() throws IOException {
+
         int comp_graph_nodes_List_size = compGraphNodes.size();
+
+//        System.out.println("Vector_Size: " + compGraphNodes);
+
+//        System.out.println("compGraphNodes size " + comp_graph_nodes_List_size);
 
         cEdges = new ArrayList<Integer>(); //Initialize the cEdges List
         dEdges = new ArrayList<Integer>(); //Initialize the dEdges List
 
-        for (int a = 0; a < comp_graph_nodes_List_size; a += 3) {
-            int index_a = compGraphNodes.get(a);
-            int index_aPlus1 = compGraphNodes.get(a + 1);
+        for (int a = 0; a < comp_graph_nodes_List_size; a = a + 3) {
+            for (int b = a + 3; b < comp_graph_nodes_List_size; b = b + 3) {
+                if ((a != b)
+                        && (compGraphNodes.get(a) != compGraphNodes.get(b))
+                        && (compGraphNodes.get(a + 1) != compGraphNodes.get(b + 1))) {
 
-            for (int b = a + 3; b < comp_graph_nodes_List_size; b += 3) {
-                int index_b = compGraphNodes.get(b);
-                int index_bPlus1 = compGraphNodes.get(b + 1);
+//                    System.out.println("compGraphNodes.get(a): " + compGraphNodes.get(a));
+//                    System.out.println("compGraphNodes.get(b): " + compGraphNodes.get(b));
 
-                // if element atomCont !=jIndex and atoms on the adjacent sides of the bonds are not equal
-                if (a != b && index_a != index_b && index_aPlus1 != index_bPlus1) {
+                    boolean molecule1_pair_connected = false;
+                    boolean molecule2_pair_connected = false;
 
                     IBond reactantBond = null;
                     IBond productBond = null;
 
-                    reactantBond = source.getBond(source.getAtom(index_a), source.getAtom(index_b));
-                    productBond = target.getBond(target.getAtom(index_aPlus1), target.getAtom(index_bPlus1));
+                    //exists a bond in molecule 2, so that molecule 1 pair is connected?
+                    for (int x = 0; x < source.getBondCount(); x++) {
+
+                        reactantBond = source.getBond(x);
+
+                        int q1 = source.getAtomNumber(reactantBond.getAtom(0));
+                        int q2 = source.getAtomNumber(reactantBond.getAtom(1));
+
+//                        System.out.println("q1: " + q1);
+//                        System.out.println("q2: " + q2);
+
+                        if (((compGraphNodes.get(a) == q1)
+                                && (compGraphNodes.get(b) == q2))
+                                || ((compGraphNodes.get(a) == q2)
+                                && (compGraphNodes.get(b) == q1))) {
+                            molecule1_pair_connected = true;
+                            break;
+                        }
+                    }
+                    //exists a bond in molecule 2, so that molecule 2 pair is connected?
+                    for (int y = 0; y < target.getBondCount(); y++) {
+
+                        productBond = target.getBond(y);
+
+                        int t1 = target.getAtomNumber(productBond.getAtom(0));
+                        int t2 = target.getAtomNumber(productBond.getAtom(1));
+
+                        if (((compGraphNodes.get(a + 1) == t1)
+                                && (compGraphNodes.get(b + 1) == t2))
+                                || ((compGraphNodes.get(a + 1) == t2)
+                                && (compGraphNodes.get(b + 1) == t1))) {
+                            molecule2_pair_connected = true;
+                            break;
+                        }
+                    }
+
                     if (reactantBond != null && productBond != null) {
-                        addEdges(reactantBond, productBond, a, b);
+                        addEdges(reactantBond, productBond, a, b, molecule1_pair_connected, molecule2_pair_connected);
                     }
                 }
             }
@@ -241,15 +287,19 @@ public final class GenerateCompatibilityGraph {
         return 0;
     }
 
-    private void addEdges(IBond reactantBond, IBond productBond, int iIndex, int jIndex) {
-        //if (isMatchBond() && bondMatch(ReactantBond, ProductBond)) {
-        if (isMatchFeasible(source, reactantBond, target, productBond, shouldMatchBonds)) {
-            cEdges.add((iIndex / 3) + 1);
-            cEdges.add((jIndex / 3) + 1);
-        } else if (reactantBond == null && productBond == null) {
-            dEdges.add((iIndex / 3) + 1);
-            dEdges.add((jIndex / 3) + 1);
-        }
+    private void addEdges(IBond reactantBond, IBond productBond, int iIndex, int jIndex,
+            boolean molecule1_pair_connected, boolean molecule2_pair_connected) {
+
+        if (molecule1_pair_connected && molecule2_pair_connected) {
+            if (isMatchFeasible(source, reactantBond, target, productBond, shouldMatchBonds)) {
+                cEdges.add((iIndex / 3) + 1);
+                cEdges.add((jIndex / 3) + 1);
+            }
+        } 
+//        else if ((!molecule1_pair_connected && !molecule2_pair_connected)) {
+//            dEdges.add((iIndex / 3) + 1);
+//            dEdges.add((jIndex / 3) + 1);
+//        }
     }
 
     /**

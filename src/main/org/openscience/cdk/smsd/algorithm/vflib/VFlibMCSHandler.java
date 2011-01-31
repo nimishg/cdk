@@ -257,7 +257,6 @@ public class VFlibMCSHandler extends AbstractMCSAlgorithm implements IMCSBase {
             }
             setVFMappings(false, query);
         }
-        setVFMappings(false, query);
 //        System.out.println("Sol count " + vfLibSolutions.size());
 //        System.out.println("Sol size " + vfLibSolutions.iterator().next().size());
 //        System.out.println("MCSSize " + vfMCSSize);
@@ -301,12 +300,7 @@ public class VFlibMCSHandler extends AbstractMCSAlgorithm implements IMCSBase {
         for (Map<INode, IAtom> solution : vfLibSolutions) {
             Map<IAtom, IAtom> atomatomMapping = new HashMap<IAtom, IAtom>();
             Map<Integer, Integer> indexindexMapping = new TreeMap<Integer, Integer>();
-            if (solution.size() > vfMCSSize) {
-                this.vfMCSSize = solution.size();
-                allAtomMCSCopy.clear();
-                allMCSCopy.clear();
-                counter = 0;
-            }
+
             for (Map.Entry<INode, IAtom> mapping : solution.entrySet()) {
                 IAtom qAtom = null;
                 IAtom tAtom = null;
@@ -324,7 +318,7 @@ public class VFlibMCSHandler extends AbstractMCSAlgorithm implements IMCSBase {
                     qIndex = getReactantMol().getAtomNumber(qAtom);
                     tIndex = getProductMol().getAtomNumber(tAtom);
                 }
-                
+
                 if (qIndex != -1 && tIndex != -1) {
                     atomatomMapping.put(qAtom, tAtom);
                     indexindexMapping.put(qIndex, tIndex);
@@ -336,24 +330,21 @@ public class VFlibMCSHandler extends AbstractMCSAlgorithm implements IMCSBase {
                     }
                 }
             }
-            if (!atomatomMapping.isEmpty() && !hasMap(indexindexMapping, allMCSCopy)
-                    && indexindexMapping.size() == vfMCSSize) {
+            if (!atomatomMapping.isEmpty() && !hasMap(indexindexMapping, allMCSCopy)) {
+//                System.out.println("\nvfMCSSize: " + vfMCSSize);
                 allAtomMCSCopy.add(counter, atomatomMapping);
                 allMCSCopy.add(counter, indexindexMapping);
                 counter++;
             }
         }
+
+//        System.out.println("After set allMCSCopy " + allMCSCopy);
     }
 
     private void setMcGregorMappings(boolean RONP, List<List<Integer>> mappings) throws CDKException {
         int counter = 0;
         for (List<Integer> mapping : mappings) {
-            if (mapping.size() > vfMCSSize) {
-                vfMCSSize = mapping.size();
-                allAtomMCS.clear();
-                allMCS.clear();
-                counter = 0;
-            }
+
             Map<IAtom, IAtom> atomatomMapping = new HashMap<IAtom, IAtom>();
             Map<Integer, Integer> indexindexMapping = new TreeMap<Integer, Integer>();
             for (int index = 0; index < mapping.size(); index += 2) {
@@ -375,7 +366,6 @@ public class VFlibMCSHandler extends AbstractMCSAlgorithm implements IMCSBase {
                     tIndex = mapping.get(index);
                 }
 
-
                 if (qIndex != null && tIndex != null) {
                     atomatomMapping.put(qAtom, tAtom);
                     indexindexMapping.put(qIndex, tIndex);
@@ -383,8 +373,14 @@ public class VFlibMCSHandler extends AbstractMCSAlgorithm implements IMCSBase {
                     throw new CDKException("Atom index pointing to NULL");
                 }
             }
+            if (indexindexMapping.size() > vfMCSSize) {
+                vfMCSSize = indexindexMapping.size();
+                allAtomMCS.clear();
+                allMCS.clear();
+                counter = 0;
+            }
             if (!atomatomMapping.isEmpty() && !hasMap(indexindexMapping, allMCS)
-                    && (2 * indexindexMapping.size()) == vfMCSSize) {
+                    && (indexindexMapping.size()) == vfMCSSize) {
                 allAtomMCS.add(counter, atomatomMapping);
                 allMCS.add(counter, indexindexMapping);
                 counter++;

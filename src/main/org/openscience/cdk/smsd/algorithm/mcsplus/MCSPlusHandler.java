@@ -102,7 +102,7 @@ public class MCSPlusHandler extends AbstractMCSAlgorithm implements IMCSBase {
     public synchronized void searchMCS(boolean shouldMatchBonds) {
         List<List<Integer>> mappings = null;
         try {
-            if (source.getAtomCount() >= target.getAtomCount()) {
+            if (source.getAtomCount() > target.getAtomCount()) {
                 mappings = new MCSPlus().getOverlaps(source, target, shouldMatchBonds);
             } else {
                 flagExchange = true;
@@ -123,6 +123,7 @@ public class MCSPlusHandler extends AbstractMCSAlgorithm implements IMCSBase {
 
             List<Map<Integer, Integer>> final_solution = FinalMappings.getInstance().getFinalMapping();
             int counter = 0;
+            int bestSolSize = 0;
             for (Map<Integer, Integer> solution : final_solution) {
 //                System.out.println("Number of MCS solution: " + solution);
                 Map<Integer, Integer> validSolution = new TreeMap<Integer, Integer>();
@@ -134,8 +135,16 @@ public class MCSPlusHandler extends AbstractMCSAlgorithm implements IMCSBase {
                     for (Map.Entry<Integer, Integer> map : solution.entrySet()) {
                         validSolution.put(map.getValue(), map.getKey());
                     }
+//                    System.out.println("MCS solution: " + validSolution);
                 }
-                allMCS.add(counter++, validSolution);
+                if (validSolution.size() > bestSolSize) {
+                    bestSolSize = validSolution.size();
+                    counter = 0;
+                    allMCS.clear();
+                }
+                if (validSolution.size() == bestSolSize) {
+                    allMCS.add(counter++, validSolution);
+                }
             }
 
         } catch (Exception ex) {
