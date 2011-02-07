@@ -26,6 +26,8 @@ package org.openscience.cdk.smsd.algorithm.mcsplus;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 import org.openscience.cdk.annotations.TestClass;
 
 /**
@@ -83,5 +85,36 @@ public class ExactMapping {
             System.exit(1);
         }
         return _mappings;
+    }
+
+    //extract atom mapping from the clique List and print it on the screen
+    /**
+     *
+     * @param comp_graph_nodes
+     * @param clique_List_org
+     * @return
+     */
+    public static Map<Integer, Integer> extractMapping(List<Integer> comp_graph_nodes, List<Integer> clique_List_org) {
+        Map<Integer, Integer> clique_mapping = new TreeMap<Integer, Integer>();
+
+        try {
+            List<Integer> clique_List = new ArrayList<Integer>(clique_List_org);
+            int clique_siz = clique_List.size();
+            int vec_size = comp_graph_nodes.size();
+//        System.out.println("VEC  SIZE " + vec_size);
+            for (int a = 0; a < clique_siz; a++) {
+                for (int b = 0; b < vec_size; b += 3) {
+                    if (clique_List.get(a) == comp_graph_nodes.get(b + 2)) {
+                        clique_mapping.put(comp_graph_nodes.get(b), comp_graph_nodes.get(b + 1));
+                    }
+                }
+            }
+
+        } catch (Exception e) {
+            System.err.println("Error in FinalMapping List: " + e.getCause());
+            e.printStackTrace();
+            System.exit(1);
+        }
+        return clique_mapping;
     }
 }

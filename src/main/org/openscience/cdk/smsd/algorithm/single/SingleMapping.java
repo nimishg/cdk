@@ -146,7 +146,7 @@ public class SingleMapping {
                     }
                 }
             } else {
-                System.err.println("Skippping Hydrogen mapping or This is not a single mapping case!");
+//                System.err.println("Skippping Hydrogen mapping or This is not a single mapping case!");
             }
         }
     }
@@ -175,7 +175,7 @@ public class SingleMapping {
                     }
                 }
             } else {
-                System.err.println("Skippping Hydrogen mapping or This is not a single mapping case!");
+//                System.err.println("Skippping Hydrogen mapping or This is not a single mapping case!");
             }
         }
     }
@@ -205,7 +205,7 @@ public class SingleMapping {
                     }
                 }
             } else {
-                System.err.println("Skippping Hydrogen mapping or This is not a single mapping case!");
+//                System.err.println("Skippping Hydrogen mapping or This is not a single mapping case!");
             }
         }
     }

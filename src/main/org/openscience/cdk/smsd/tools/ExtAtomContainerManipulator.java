@@ -307,7 +307,7 @@ public class ExtAtomContainerManipulator extends AtomContainerManipulator {
         } else {
             mol = atomContainer.getBuilder().newInstance(IMolecule.class, atomContainer);
             if (atomContainer.getAtom(0).getSymbol().equalsIgnoreCase("H")) {
-                System.err.println("WARNING: single hydrogen atom removal not supported!");
+//                System.err.println("WARNING: single hydrogen atom removal not supported!");
             }
             mol.setFlags(atomContainer.getFlags());
         }
@@ -333,7 +333,7 @@ public class ExtAtomContainerManipulator extends AtomContainerManipulator {
         if (mol.getAtomCount() > 1) {
             mol = removeHydrogens(mol);
         } else if (atomContainer.atoms().iterator().next().getSymbol().equalsIgnoreCase("H")) {
-            System.err.println("WARNING: single hydrogen atom removal not supported!");
+//            System.err.println("WARNING: single hydrogen atom removal not supported!");
         }
         mol.setProperties(atomContainer.getProperties());
         mol.setFlags(atomContainer.getFlags());

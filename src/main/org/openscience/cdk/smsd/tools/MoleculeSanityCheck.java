@@ -70,7 +70,7 @@ public class MoleculeSanityCheck {
         }
 
         if (isMarkush) {
-            System.err.println("Skipping Markush structure for sanity check");
+            logger.warn("Skipping Markush structure for sanity check");
         }
 
         // Check for salts and such
@@ -80,7 +80,7 @@ public class MoleculeSanityCheck {
             //  part is a metal/halogen etc.
             IMoleculeSet fragments = ConnectivityChecker.partitionIntoMolecules(molecule);
             if (fragments.getMoleculeCount() > 2) {
-                System.err.println("More than 2 components. Skipped");
+                logger.warn("More than 2 components. Skipped");
             } else {
                 IMolecule frag1 = fragments.getMolecule(0);
                 IMolecule frag2 = fragments.getMolecule(1);

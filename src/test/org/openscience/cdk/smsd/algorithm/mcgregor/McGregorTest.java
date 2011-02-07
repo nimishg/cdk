@@ -74,21 +74,6 @@ public class McGregorTest {
     }
 
     /**
-     * Test of startMcGregorIteration method, of class McGregor.
-     */
-    @Test
-    public void testStartMcGregorIteration_3args() throws Exception {
-        System.out.println("startMcGregorIteration");
-        int largestMappingSize = 0;
-        List<Integer> clique_vector = null;
-        List<Integer> comp_graph_nodes = null;
-        McGregor instance = null;
-        instance.startMcGregorIteration(largestMappingSize, clique_vector, comp_graph_nodes);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
      * Test of getMappings method, of class McGregor.
      */
     @Test

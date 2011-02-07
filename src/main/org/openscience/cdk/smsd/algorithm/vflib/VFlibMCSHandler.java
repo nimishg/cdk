@@ -36,7 +36,6 @@ import org.openscience.cdk.exception.CDKException;
 import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.isomorphism.matchers.IQueryAtomContainer;
-import org.openscience.cdk.smsd.algorithm.mcgregor.McGregor;
 import org.openscience.cdk.smsd.algorithm.vflib.interfaces.IMapper;
 import org.openscience.cdk.smsd.algorithm.vflib.interfaces.INode;
 import org.openscience.cdk.smsd.algorithm.vflib.interfaces.IQuery;
@@ -48,6 +47,7 @@ import org.openscience.cdk.smsd.tools.MolHandler;
 import org.openscience.cdk.tools.ILoggingTool;
 import org.openscience.cdk.tools.LoggingToolFactory;
 import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
+import org.openscience.cdk.smsd.algorithm.mcgregor.McGregor;
 
 /**
  * This class should be used to find MCS between query
@@ -268,7 +268,7 @@ public class VFlibMCSHandler extends AbstractMCSAlgorithm implements IMCSBase {
         List<List<Integer>> mappings = new ArrayList<List<Integer>>();
         boolean ROPFlag = true;
         for (Map<Integer, Integer> firstPassMappings : allMCSCopy) {
-            Map<Integer, Integer> tMapping = new TreeMap<Integer, Integer>(firstPassMappings);
+            Map<Integer, Integer> extendMapping = new TreeMap<Integer, Integer>(firstPassMappings);
             McGregor mgit = null;
             if (queryMol != null) {
                 mgit = new McGregor(queryMol, mol2, mappings, isBondMatchFlag());
@@ -276,15 +276,15 @@ public class VFlibMCSHandler extends AbstractMCSAlgorithm implements IMCSBase {
                 if (countR > countP) {
                     mgit = new McGregor(mol1, mol2, mappings, isBondMatchFlag());
                 } else {
-                    tMapping.clear();
+                    extendMapping.clear();
                     mgit = new McGregor(mol2, mol1, mappings, isBondMatchFlag());
                     ROPFlag = false;
                     for (Map.Entry<Integer, Integer> map : firstPassMappings.entrySet()) {
-                        tMapping.put(map.getValue(), map.getKey());
+                        extendMapping.put(map.getValue(), map.getKey());
                     }
                 }
             }
-            mgit.startMcGregorIteration(mgit.getMCSSize(), tMapping); //Start McGregor search
+            mgit.startMcGregorIteration(mgit.getMCSSize(), extendMapping); //Start McGregor search
             mappings = mgit.getMappings();
             mgit = null;
         }

@@ -50,25 +50,29 @@ public enum Algorithm {
      */
     DEFAULT(0, "Default SMSD algorithm"),
     /**
+     * Default SMSD algorithm.
+     */
+    DEFAULT_1(1, "Default SMSD algorithm"),
+    /**
      * MCS Plus algorithm.
      */
-    MCSPlus(1, "MCS Plus algorithm"),
+    MCSPlus(2, "MCS Plus algorithm"),
     /**
      * VF Lib based MCS algorithm.
      */
-    VFLibMCS(2, "VF Lib based MCS algorithm"),
+    VFLibMCS(3, "VF Lib based MCS algorithm"),
     /**
      * CDK UIT MCS.
      */
-    CDKMCS(3, "CDK UIT MCS"),
+    CDKMCS(4, "CDK UIT MCS"),
     /**
      * Substructure search will return all maps.
      */
-    SubStructure(4, "Substructure search"),
+    SubStructure(5, "Substructure search"),
     /**
      * Substructure search will return first map.
      */
-    TurboSubStructure(5, "Turbo Mode- Substructure search");
+    TurboSubStructure(6, "Turbo Mode- Substructure search");
     private final int type;
     private final String description;
 

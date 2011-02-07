@@ -178,8 +178,8 @@ public final class Isomorphism extends AbstractMCS implements Serializable {
     private boolean removeHydrogen = false;
     private final static ILoggingTool Logger =
             LoggingToolFactory.createLoggingTool(Isomorphism.class);
-    private double bondSensitiveTimeOut = 0.15;//mins
-    private double bondInSensitiveTimeOut = 1.00;//mins
+    private double bondSensitiveTimeOut = 1.00;//mins
+    private double bondInSensitiveTimeOut = 2.00;//mins
     private boolean subGraph = false;
     private boolean matchBonds = false;
 
@@ -314,6 +314,9 @@ public final class Isomorphism extends AbstractMCS implements Serializable {
                 break;
             case DEFAULT:
                 defaultMCSAlgorithm();
+                break;
+            case DEFAULT_1:
+                defaultMCSAlgorithm_1();
                 break;
             case MCSPlus:
                 mcsPlusAlgorithm();
@@ -521,6 +524,17 @@ public final class Isomorphism extends AbstractMCS implements Serializable {
         }
     }
 
+    private void defaultMCSAlgorithm_1() {
+        try {
+            cdkMCSAlgorithm();
+            if (getFirstMapping() == null || isTimeOut()) {
+                vfLibMCS();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     private void subStructureAlgorithm(int rBondCount, int pBondCount) {
         try {
             if (rBondCount > 0 && pBondCount > 0) {
@@ -672,7 +686,7 @@ public final class Isomorphism extends AbstractMCS implements Serializable {
                     Logger.error(Level.SEVERE, null, ex);
                 }
             }
-            
+
             if (fragmentFilter) {
                 chemFilter.sortResultsByFragments();
                 this.fragmentSize = chemFilter.getSortedFragment();

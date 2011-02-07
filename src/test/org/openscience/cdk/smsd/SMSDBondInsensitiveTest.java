@@ -228,7 +228,7 @@ public class SMSDBondInsensitiveTest {
         boolean fragmentMinimization = true;
         boolean energyMinimization = true;
 
-        Isomorphism comparison = new Isomorphism(Algorithm.DEFAULT, bondSensitive);
+        Isomorphism comparison = new Isomorphism(Algorithm.DEFAULT_1, bondSensitive);
         comparison.init(source, target, removeHydrogen, true);
         comparison.setChemFilters(stereoMatch, fragmentMinimization, energyMinimization);
 
