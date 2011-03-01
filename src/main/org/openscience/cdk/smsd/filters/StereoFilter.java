@@ -112,9 +112,9 @@ public class StereoFilter extends BaseFilter implements IChemicalFilter<Double> 
                 //            System.out.println("\nStart score " + score);
                 Map<Integer, Integer> atomsMCS = allStereoMCS.get(Key);
                 Map<IAtom, IAtom> atomMapMCS = allStereoAtomMCS.get(Key);
-                score = getAtomScore(score, atomMapMCS, reactant, product);
+                double atomScore = getAtomScore(score, atomMapMCS, reactant, product);
                 Map<IBond, IBond> bondMaps = makeBondMapsOfAtomMaps(rMol, pMol, atomsMCS);
-
+                double ringScore = 0.0;
                 if (rMol.getBondCount() > 1
                         && pMol.getBondCount() > 1) {
                     List<Object> subgraphRList = getMappedFragment(rMol, atomMapMCS.keySet());
@@ -122,10 +122,11 @@ public class StereoFilter extends BaseFilter implements IChemicalFilter<Double> 
                     double rscore = getRingMatchScore(subgraphRList);
                     List<Object> subgraphPList = getMappedFragment(pMol, atomMapMCS.values());
                     double pscore = getRingMatchScore(subgraphPList);
-                    score = rscore + pscore;
+                    ringScore = rscore + pscore;
                 }
-                score = getBondScore(score, bondMaps);
+                double bondScore = getBondScore(score, bondMaps);
 
+                score = atomScore + ringScore + bondScore;
                 if (!stereoMatchFlag) {
                     stereoMatchFlag = true;
                 }
@@ -212,8 +213,8 @@ public class StereoFilter extends BaseFilter implements IChemicalFilter<Double> 
             } else {
                 score += BOScore;
             }
-
-            if (rAtom.getCharge() == pAtom.getCharge()) {
+            
+            if (rAtom.getFormalCharge() == pAtom.getFormalCharge()) {
                 score += 5.0;
             }
         }

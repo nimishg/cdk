@@ -37,7 +37,9 @@ import org.openscience.cdk.annotations.TestMethod;
 public class TimeOut {
 
     private static TimeOut instance = null;
-    private double time = -1;
+    private double cdkMCSTimeout = -1;
+    private double mcsPlusTimeout = -1;
+    private double vfTimeout = -1;
     private boolean timeOutFlag = false;
 
     /**
@@ -57,22 +59,22 @@ public class TimeOut {
     }
 
     /**
-     * set cutoff value for time out eg. -1 for infinite and 0.23 for
+     * set cutoff value for cdkMCSTimeout out eg. -1 for infinite and 0.23 for
      * 23 seconds.
      * @param timeout
      */
     @TestMethod("testSetTimeOut")
-    public void setTimeOut(double timeout) {
-        this.time = timeout;
+    public void setCDKMCSTimeOut(double timeout) {
+        this.cdkMCSTimeout = timeout;
     }
 
     /**
-     * Return cutoff value for time out.
-     * @return time out cutoff value
+     * Return cutoff value for cdkMCSTimeout out.
+     * @return cdkMCSTimeout out cutoff value
      */
     @TestMethod("testSetTimeOut")
-    public double getTimeOut() {
-        return time;
+    public double getCDKMCSTimeOut() {
+        return cdkMCSTimeout;
     }
 
     /**
@@ -91,5 +93,33 @@ public class TimeOut {
     @TestMethod("testSetTimeOutFlag")
     public void setTimeOutFlag(boolean timeOut) {
         this.timeOutFlag = timeOut;
+    }
+
+    /**
+     * @return time out for the MCS Plus algorithm
+     */
+    public double getMCSPlusTimeout() {
+        return mcsPlusTimeout;
+    }
+
+    /**
+     * @param mcsPlusTimeout time out for mcsPlus
+     */
+    public void setMCSPlusTimeout(double mcsPlusTimeout) {
+        this.mcsPlusTimeout = mcsPlusTimeout;
+    }
+
+    /**
+     * @return time out for the VF algorithm
+     */
+    public double getVFTimeout() {
+        return vfTimeout;
+    }
+
+    /**
+     * @param vfTimeout time out for the VF algorithm
+     */
+    public void setVFTimeout(double VFTimeout) {
+        this.vfTimeout = VFTimeout;
     }
 }

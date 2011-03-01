@@ -379,22 +379,62 @@ public class AbstractMCSTest {
         }
 
         @Override
-        public double getBondSensitiveTimeOut() {
+        public double getBondInSensitiveCDKMCSTimeOut() {
             throw new UnsupportedOperationException("Not supported yet.");
         }
 
         @Override
-        public void setBondSensitiveTimeOut(double bondSensitiveTimeOut) {
+        public double getBondInSensitiveMCSPlusTimeOut() {
             throw new UnsupportedOperationException("Not supported yet.");
         }
 
         @Override
-        public double getBondInSensitiveTimeOut() {
+        public double getBondInSensitiveVFTimeOut() {
             throw new UnsupportedOperationException("Not supported yet.");
         }
 
         @Override
-        public void setBondInSensitiveTimeOut(double bondInSensitiveTimeOut) {
+        public double getBondSensitiveCDKMCSTimeOut() {
+            throw new UnsupportedOperationException("Not supported yet.");
+        }
+
+        @Override
+        public double getBondSensitiveMCSPlusTimeOut() {
+            throw new UnsupportedOperationException("Not supported yet.");
+        }
+
+        @Override
+        public double getBondSensitiveVFTimeOut() {
+            throw new UnsupportedOperationException("Not supported yet.");
+        }
+
+        @Override
+        public void setBondInSensitiveCDKMCSTimeOut(double bondInSensitiveTimeOut) {
+            throw new UnsupportedOperationException("Not supported yet.");
+        }
+
+        @Override
+        public void setBondInSensitiveMCSPlusTimeOut(double bondInSensitiveTimeOut) {
+            throw new UnsupportedOperationException("Not supported yet.");
+        }
+
+        @Override
+        public void setBondInSensitiveVFTimeOut(double bondInSensitiveTimeOut) {
+            throw new UnsupportedOperationException("Not supported yet.");
+        }
+
+        @Override
+        public void setBondSensitiveCDKMCSTimeOut(double bondSensitiveTimeOut) {
+            throw new UnsupportedOperationException("Not supported yet.");
+        }
+
+        @Override
+        public void setBondSensitiveMCSPlusTimeOut(double bondSensitiveTimeOut) {
+            throw new UnsupportedOperationException("Not supported yet.");
+        }
+
+        @Override
+        public void setBondSensitiveVFTimeOut(double bondSensitiveTimeOut) {
             throw new UnsupportedOperationException("Not supported yet.");
         }
     }

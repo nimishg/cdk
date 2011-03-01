@@ -167,7 +167,7 @@ public class SubStructureSearchAlgorithmsTest {
         Isomorphism smsd1 = new Isomorphism(Algorithm.DEFAULT, false);
         smsd1.init(queryac, target, true, true);
         smsd1.setChemFilters(true, false, false);
-        Integer score = 48;
+        Integer score = 77;
         assertEquals(score, smsd1.getStereoScore(0));
     }
 

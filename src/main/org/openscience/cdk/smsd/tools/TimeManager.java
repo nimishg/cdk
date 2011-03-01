@@ -59,7 +59,6 @@ public class TimeManager {
     @TestMethod("testGetElapsedTimeInHours")
     public double getElapsedTimeInHours() {
         double currentTime = System.currentTimeMillis();
-
         return (currentTime - startTime) / (60 * 60 * 1000);
 
 

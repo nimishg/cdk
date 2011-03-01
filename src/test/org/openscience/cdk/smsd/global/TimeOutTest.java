@@ -44,10 +44,10 @@ public class TimeOutTest {
     @Test
     public void testSetTimeOut() {
         TimeOut timeOut = TimeOut.getInstance();
-        timeOut.setTimeOut(0.1);
-        Assert.assertEquals(0.1, timeOut.getTimeOut(), 0.0001);
-        timeOut.setTimeOut(0.2);
-        Assert.assertEquals(0.2, timeOut.getTimeOut(), 0.0001);
+        timeOut.setCDKMCSTimeOut(0.1);
+        Assert.assertEquals(0.1, timeOut.getCDKMCSTimeOut(), 0.0001);
+        timeOut.setMCSPlusTimeout(0.2);
+        Assert.assertEquals(0.2, timeOut.getMCSPlusTimeout(), 0.0001);
     }
 
     /**
@@ -57,9 +57,9 @@ public class TimeOutTest {
     public void testGetTimeOut() {
         System.out.println("getTimeOut");
         TimeOut instance = new TimeOut();
-        instance.setTimeOut(10);
+        instance.setVFTimeout(10);
         double expResult = 10.0;
-        double result = instance.getTimeOut();
+        double result = instance.getVFTimeout();
         Assert.assertEquals(expResult, result, 10.0);
     }
 
@@ -70,7 +70,7 @@ public class TimeOutTest {
     public void testIsTimeOutFlag() {
         System.out.println("isTimeOutFlag");
         TimeOut instance = new TimeOut();
-        instance.setTimeOut(10);
+        instance.setMCSPlusTimeout(10);
         instance.setTimeOutFlag(true);
         boolean expResult = true;
         boolean result = instance.isTimeOutFlag();
@@ -85,7 +85,7 @@ public class TimeOutTest {
         System.out.println("setTimeOutFlag");
         boolean timeOut = true;
         TimeOut instance = new TimeOut();
-        instance.setTimeOut(10);
+        instance.setVFTimeout(10);
         instance.setTimeOutFlag(timeOut);
         boolean expResult = false;
         boolean result = instance.isTimeOutFlag();

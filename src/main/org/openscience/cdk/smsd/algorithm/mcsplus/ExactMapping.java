@@ -89,7 +89,7 @@ public class ExactMapping {
 
     //extract atom mapping from the clique List and print it on the screen
     /**
-     *
+     * 
      * @param comp_graph_nodes
      * @param clique_List_org
      * @return

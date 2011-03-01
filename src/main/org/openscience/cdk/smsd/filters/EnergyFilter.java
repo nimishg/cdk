@@ -20,7 +20,6 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA.
  */
-
 package org.openscience.cdk.smsd.filters;
 
 import java.util.ArrayList;
@@ -45,7 +44,6 @@ public class EnergyFilter extends BaseFilter implements IChemicalFilter<Double> 
 
 //    public static final Double MAX_ENERGY = Double.MAX_VALUE;
     public static final Double MAX_ENERGY = 99999999.99;
-
     private List<Double> bEnergies = null;
 
     public EnergyFilter(IAtomContainer rMol, IAtomContainer pMol) {
@@ -59,20 +57,20 @@ public class EnergyFilter extends BaseFilter implements IChemicalFilter<Double> 
             Map<Integer, Map<IAtom, IAtom>> allAtomEnergyMCS,
             Map<Integer, Double> energySelectionMap) throws CDKException {
 
-      for (Integer Key : allEnergyMCS.keySet()) {
-          Map<Integer, Integer> mcsAtom = allEnergyMCS.get(Key);
-          Double Energies = getMappedMoleculeEnergies(mcsAtom);
-          energySelectionMap.put(Key, Energies);
-      }
+        for (Integer Key : allEnergyMCS.keySet()) {
+            Map<Integer, Integer> mcsAtom = allEnergyMCS.get(Key);
+            Double Energies = getMappedMoleculeEnergies(mcsAtom);
+            energySelectionMap.put(Key, Energies);
+        }
 
-      energySelectionMap = sortMapByValueInAscendingOrder(energySelectionMap);
+        energySelectionMap = sortMapByValueInAscendingOrder(energySelectionMap);
 
-      double lowestEnergyScore = MAX_ENERGY;
-      for (Integer key : energySelectionMap.keySet()) {
-          lowestEnergyScore = energySelectionMap.get(key);
-          break;
-      }
-      return lowestEnergyScore;
+        double lowestEnergyScore = MAX_ENERGY;
+        for (Integer key : energySelectionMap.keySet()) {
+            lowestEnergyScore = energySelectionMap.get(key);
+            break;
+        }
+        return lowestEnergyScore;
     }
 
     @Override
@@ -102,37 +100,37 @@ public class EnergyFilter extends BaseFilter implements IChemicalFilter<Double> 
     private synchronized Double getMappedMoleculeEnergies(Map<Integer, Integer> MCSAtomSolution) throws CDKException {
 
 //      System.out.println("\nSort By Energies");
-      double totalBondEnergy = -9999.0;
+        double totalBondEnergy = -9999.0;
 
-      IAtomContainer Educt = DefaultChemObjectBuilder.getInstance().newInstance(IMolecule.class, rMol);
-      IAtomContainer product = DefaultChemObjectBuilder.getInstance().newInstance(IMolecule.class, pMol);
+        IAtomContainer educt = DefaultChemObjectBuilder.getInstance().newInstance(IMolecule.class, rMol);
+        IAtomContainer product = DefaultChemObjectBuilder.getInstance().newInstance(IMolecule.class, pMol);
 
-      for (IAtom eAtom : Educt.atoms()) {
-          eAtom.setFlag(0, false);
-      }
+        for (IAtom eAtom : educt.atoms()) {
+            eAtom.setFlag(0, false);
+        }
 
-      for (IAtom pAtom : product.atoms()) {
-          pAtom.setFlag(0, false);
-      }
+        for (IAtom pAtom : product.atoms()) {
+            pAtom.setFlag(0, false);
+        }
 
-      if (MCSAtomSolution != null) {
-          for (Map.Entry<Integer, Integer> map : MCSAtomSolution.entrySet()) {
-              int ENum = map.getKey();
-              int PNum = map.getValue();
+        if (MCSAtomSolution != null) {
+            for (Map.Entry<Integer, Integer> map : MCSAtomSolution.entrySet()) {
+                int eNum = map.getKey();
+                int pNum = map.getValue();
 
-              IAtom eAtom = Educt.getAtom(ENum);
-              IAtom pAtom = product.getAtom(PNum);
+                IAtom eAtom = educt.getAtom(eNum);
+                IAtom pAtom = product.getAtom(pNum);
 
-              eAtom.setFlag(0, true);
-              pAtom.setFlag(0, true);
-          }
-      }
+                eAtom.setFlag(0, true);
+                pAtom.setFlag(0, true);
+            }
+        }
 
-      if (MCSAtomSolution != null) {
-          totalBondEnergy = getEnergy(Educt, product);
-      }
-      return totalBondEnergy;
-  }
+        if (MCSAtomSolution != null) {
+            totalBondEnergy = getEnergy(educt, product);
+        }
+        return totalBondEnergy;
+    }
 
     private double getEnergy(IAtomContainer Educt, IAtomContainer product) throws CDKException {
         Double eEnergy = 0.0;
@@ -162,5 +160,4 @@ public class EnergyFilter extends BaseFilter implements IChemicalFilter<Double> 
         }
         return energy;
     }
-
 }

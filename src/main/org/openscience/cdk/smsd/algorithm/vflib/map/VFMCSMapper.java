@@ -84,7 +84,7 @@ public class VFMCSMapper implements IMapper {
      * @return the timeout
      */
     protected synchronized static double getTimeout() {
-        return TimeOut.getInstance().getTimeOut();
+        return TimeOut.getInstance().getVFTimeout();
     }
 
     /**

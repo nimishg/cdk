@@ -178,8 +178,12 @@ public final class Isomorphism extends AbstractMCS implements Serializable {
     private boolean removeHydrogen = false;
     private final static ILoggingTool Logger =
             LoggingToolFactory.createLoggingTool(Isomorphism.class);
-    private double bondSensitiveTimeOut = 1.00;//mins
-    private double bondInSensitiveTimeOut = 2.00;//mins
+    private double bondSensitiveCDKMCSTimeOut = 1.00;//mins
+    private double bondInSensitiveCDKMCSTimeOut = 2.00;//mins
+    private double bondSensitiveMCSPlusTimeOut = 2.00;//mins
+    private double bondInSensitiveMCSPlusTimeOut = 5.00;//mins
+    private double bondSensitiveVFTimeOut = 5.00;//mins
+    private double bondInSensitiveVFTimeOut = 10.00;//mins
     private boolean subGraph = false;
     private boolean matchBonds = false;
 
@@ -205,7 +209,6 @@ public final class Isomorphism extends AbstractMCS implements Serializable {
         firstAtomMCS = new HashMap<IAtom, IAtom>();
         allBondMCS = new ArrayList<Map<IBond, IBond>>();
         firstBondMCS = new HashMap<IBond, IBond>();
-
         setTime(bondTypeFlag);
         setMatchBonds(bondTypeFlag);
     }
@@ -376,6 +379,7 @@ public final class Isomorphism extends AbstractMCS implements Serializable {
     }
 
     private synchronized void mcsPlusAlgorithm() {
+//        double time = System.currentTimeMillis();
         MCSPlusHandler mcs = null;
         mcs = new MCSPlusHandler();
 
@@ -393,6 +397,8 @@ public final class Isomorphism extends AbstractMCS implements Serializable {
 
         firstAtomMCS.putAll(mcs.getFirstAtomMapping());
         allAtomMCS.addAll(mcs.getAllAtomMapping());
+//        System.out.println("\nMCSPlus used\n" + ((System.currentTimeMillis() - time) / (60 * 1000)));
+
     }
 
     private void vfLibMCS() {
@@ -514,7 +520,11 @@ public final class Isomorphism extends AbstractMCS implements Serializable {
                     vfLibMCS();
                 }
             } else {
-                mcsPlusAlgorithm();
+                try {
+                    mcsPlusAlgorithm();
+                } catch (Exception e) {
+                    cdkMCSAlgorithm();
+                }
                 if (getFirstMapping() == null || isTimeOut()) {
                     vfLibMCS();
                 }
@@ -528,7 +538,10 @@ public final class Isomorphism extends AbstractMCS implements Serializable {
         try {
             cdkMCSAlgorithm();
             if (getFirstMapping() == null || isTimeOut()) {
+//                System.out.println("\nCDKMCS hit by timeout\n");
+//                double time = System.currentTimeMillis();
                 vfLibMCS();
+//                System.out.println("\nVF Lib used\n" + ((System.currentTimeMillis() - time) / (60 * 1000)));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -569,10 +582,14 @@ public final class Isomorphism extends AbstractMCS implements Serializable {
     private void setTime(boolean bondTypeFlag) {
         if (bondTypeFlag) {
             TimeOut tmo = TimeOut.getInstance();
-            tmo.setTimeOut(getBondSensitiveTimeOut());
+            tmo.setCDKMCSTimeOut(getBondSensitiveCDKMCSTimeOut());
+            tmo.setMCSPlusTimeout(getBondSensitiveMCSPlusTimeOut());
+            tmo.setVFTimeout(getBondSensitiveVFTimeOut());
         } else {
             TimeOut tmo = TimeOut.getInstance();
-            tmo.setTimeOut(getBondInSensitiveTimeOut());
+            tmo.setCDKMCSTimeOut(getBondInSensitiveCDKMCSTimeOut());
+            tmo.setMCSPlusTimeout(getBondInSensitiveMCSPlusTimeOut());
+            tmo.setVFTimeout(getBondInSensitiveVFTimeOut());
         }
     }
 
@@ -666,8 +683,6 @@ public final class Isomorphism extends AbstractMCS implements Serializable {
 
         if (firstAtomMCS != null) {
             ChemicalFilters chemFilter = new ChemicalFilters(allMCS, allAtomMCS, firstSolution, firstAtomMCS, getReactantMolecule(), getProductMolecule());
-
-
 
             if (energyFilter) {
                 try {
@@ -925,42 +940,6 @@ public final class Isomorphism extends AbstractMCS implements Serializable {
     }
 
     /**
-     * {@inheritDoc}
-     * @return the bondSensitiveTimeOut
-     */
-    @Override
-    public double getBondSensitiveTimeOut() {
-        return bondSensitiveTimeOut;
-    }
-
-    /**
-     * {@inheritDoc}
-     * @param bondSensitiveTimeOut the bond Sensitive Timeout in mins (default 0.10 min)
-     */
-    @Override
-    public void setBondSensitiveTimeOut(double bondSensitiveTimeOut) {
-        this.bondSensitiveTimeOut = bondSensitiveTimeOut;
-    }
-
-    /**
-     * {@inheritDoc}
-     * @return the bondInSensitiveTimeOut
-     */
-    @Override
-    public double getBondInSensitiveTimeOut() {
-        return bondInSensitiveTimeOut;
-    }
-
-    /**
-     * {@inheritDoc}
-     * @param bondInSensitiveTimeOut the bond insensitive Timeout in mins (default 0.15 min)
-     */
-    @Override
-    public void setBondInSensitiveTimeOut(double bondInSensitiveTimeOut) {
-        this.bondInSensitiveTimeOut = bondInSensitiveTimeOut;
-    }
-
-    /**
      * @return the matchBonds
      */
     public boolean isMatchBonds() {
@@ -1000,5 +979,65 @@ public final class Isomorphism extends AbstractMCS implements Serializable {
      */
     private void setFirstBondMap(Map<IBond, IBond> firstBondMCS) {
         this.firstBondMCS = firstBondMCS;
+    }
+
+    @Override
+    public double getBondSensitiveCDKMCSTimeOut() {
+        return this.bondSensitiveCDKMCSTimeOut;
+    }
+
+    @Override
+    public void setBondSensitiveCDKMCSTimeOut(double bondSensitiveTimeOut) {
+        this.bondSensitiveCDKMCSTimeOut = bondSensitiveTimeOut;
+    }
+
+    @Override
+    public double getBondInSensitiveCDKMCSTimeOut() {
+        return bondInSensitiveCDKMCSTimeOut;
+    }
+
+    @Override
+    public void setBondInSensitiveCDKMCSTimeOut(double bondInSensitiveTimeOut) {
+        this.bondInSensitiveCDKMCSTimeOut = bondInSensitiveTimeOut;
+    }
+
+    @Override
+    public double getBondSensitiveMCSPlusTimeOut() {
+        return this.bondSensitiveMCSPlusTimeOut;
+    }
+
+    @Override
+    public void setBondSensitiveMCSPlusTimeOut(double bondSensitiveTimeOut) {
+        this.bondSensitiveMCSPlusTimeOut = bondSensitiveTimeOut;
+    }
+
+    @Override
+    public double getBondInSensitiveMCSPlusTimeOut() {
+        return this.bondInSensitiveMCSPlusTimeOut;
+    }
+
+    @Override
+    public void setBondInSensitiveMCSPlusTimeOut(double bondInSensitiveTimeOut) {
+        this.bondInSensitiveMCSPlusTimeOut = bondInSensitiveTimeOut;
+    }
+
+    @Override
+    public double getBondSensitiveVFTimeOut() {
+        return this.bondSensitiveVFTimeOut;
+    }
+
+    @Override
+    public void setBondSensitiveVFTimeOut(double bondSensitiveTimeOut) {
+        this.bondSensitiveVFTimeOut = bondSensitiveTimeOut;
+    }
+
+    @Override
+    public double getBondInSensitiveVFTimeOut() {
+        return this.bondInSensitiveVFTimeOut;
+    }
+
+    @Override
+    public void setBondInSensitiveVFTimeOut(double bondInSensitiveTimeOut) {
+        this.bondInSensitiveVFTimeOut = bondInSensitiveTimeOut;
     }
 }

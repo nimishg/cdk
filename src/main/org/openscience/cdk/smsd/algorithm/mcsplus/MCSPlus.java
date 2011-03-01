@@ -24,7 +24,6 @@ package org.openscience.cdk.smsd.algorithm.mcsplus;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Stack;
@@ -33,7 +32,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.openscience.cdk.annotations.TestClass;
 import org.openscience.cdk.exception.CDKException;
-import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.smsd.algorithm.mcgregor.McGregor;
 import org.openscience.cdk.smsd.global.TimeOut;
@@ -60,7 +58,7 @@ public class MCSPlus {
      * @return the timeout
      */
     protected synchronized static double getTimeout() {
-        return TimeOut.getInstance().getTimeOut();
+        return TimeOut.getInstance().getMCSPlusTimeout();
     }
 
     /**
@@ -120,11 +118,7 @@ public class MCSPlus {
                 indexindexMapping = ExactMapping.extractMapping(comp_graph_nodes, maxCliqueSet.peek());
                 mappings.add(indexindexMapping);
                 maxCliqueSet.pop();
-                if (isTimeOut()) {
-                    break;
-                }
             }
-
             extendMappings = searchMcGregorMapping(ac1, ac2, mappings, shouldMatchBonds);
 
         } catch (IOException ex) {
@@ -161,6 +155,11 @@ public class MCSPlus {
             mgit.startMcGregorIteration(mgit.getMCSSize(), extendMapping); //Start McGregor search
             extendMappings = mgit.getMappings();
             mgit = null;
+
+            if (isTimeOut()) {
+                System.out.println("\nMCSPlus hit by timeout in McGregor\n");
+                break;
+            }
         }
 //        System.out.println("\nSol count after MG" + extendMappings.size());
         List<List<Integer>> finalMappings = setMcGregorMappings(ac1, ac2, ROPFlag, extendMappings);

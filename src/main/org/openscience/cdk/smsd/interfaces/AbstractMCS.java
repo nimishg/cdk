@@ -39,7 +39,7 @@ import org.openscience.cdk.isomorphism.matchers.IQueryAtomContainer;
  * @author Syed Asad Rahman <asad@ebi.ac.uk>
  */
 @TestClass("org.openscience.cdk.smsd.interfaces.AbstractMCSTest")
-public abstract class AbstractMCS {
+public abstract class AbstractMCS implements ITimeOut {
 
     /** 
      * initialize query and target molecules.
@@ -76,6 +76,7 @@ public abstract class AbstractMCS {
      * @throws CDKException
      */
     public abstract void init(IQueryAtomContainer source, IAtomContainer target) throws CDKException;
+
     /**
      * initialize query and target molecules.
      *
@@ -199,28 +200,4 @@ public abstract class AbstractMCS {
      * @return Best Mapping Index
      */
     public abstract Map<Integer, Integer> getFirstMapping();
-
-    /**
-     * get timeout in mins for bond sensitive searches
-     * @return the bondSensitive TimeOut
-     */
-    public abstract double getBondSensitiveTimeOut();
-
-    /**
-     * set timeout in mins (default 0.10 min) for bond sensitive searches
-     * @param bondSensitiveTimeOut the bond Sensitive Timeout in mins (default 0.30 min)
-     */
-    public abstract void setBondSensitiveTimeOut(double bondSensitiveTimeOut);
-
-    /**
-     * get timeout in mins for bond insensitive searches
-     * @return the bondInSensitive TimeOut
-     */
-    public abstract double getBondInSensitiveTimeOut();
-
-    /**
-     * set timeout in mins (default 1.00 min) for bond insensitive searches
-     * @param bondInSensitiveTimeOut the bond insensitive 
-     */
-    public abstract void setBondInSensitiveTimeOut(double bondInSensitiveTimeOut);
 }

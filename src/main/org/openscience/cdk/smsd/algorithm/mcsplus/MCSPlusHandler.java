@@ -150,7 +150,6 @@ public class MCSPlusHandler extends AbstractMCSAlgorithm implements IMCSBase {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-
     }
 
     private synchronized void setAllAtomMapping() {
