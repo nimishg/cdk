@@ -1,8 +1,6 @@
-/* Copyright (C) 2008 Rajarshi Guha
- *               2009,2011 Egon Willighagen <egonw@users.sf.net>
- * 
+/* Copyright (C) 2011  Egon Willighagen <egonw@users.sf.net>
+ *
  * Contact: cdk-devel@lists.sourceforge.net
- * Contact: rajarshi@users.sourceforge.net
  * 
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public License
@@ -24,45 +22,40 @@
  */
 package org.openscience.cdk.fingerprint;
 
-import java.util.BitSet;
-
 import org.junit.Assert;
 import org.junit.Test;
-import org.openscience.cdk.nonotify.NoNotificationChemObjectBuilder;
+import org.openscience.cdk.DefaultChemObjectBuilder;
+import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.smiles.SmilesParser;
-import org.openscience.cdk.tools.ILoggingTool;
-import org.openscience.cdk.tools.LoggingToolFactory;
+
+import java.util.Map;
+
 /**
- * @cdk.module test-fingerprint
+ * @cdk.module test-signature
  */
-public class EStateFingerprinterTest extends AbstractFixedLengthFingerprinterTest {
+public class SignatureFingerprinterTest extends AbstractFingerprinterTest {
 
-	private static ILoggingTool logger =
-        LoggingToolFactory.createLoggingTool(EStateFingerprinterTest.class);
-
-	public IFingerprinter getFingerprinter() {
-		return new EStateFingerprinter();
-	}
+    public IFingerprinter getFingerprinter() {
+        return new SignatureFingerprinter();
+    }
 
     @Test
     public void testGetSize() throws Exception {
-        IFingerprinter printer = new EStateFingerprinter();
-        Assert.assertEquals(79, printer.getSize());
+        IFingerprinter fingerprinter = new SignatureFingerprinter();
+        Assert.assertNotNull(fingerprinter);
+        Assert.assertEquals(-1, fingerprinter.getSize());
     }
 
     @Test
     public void testFingerprint() throws Exception {
-		SmilesParser parser = new SmilesParser(NoNotificationChemObjectBuilder.getInstance());
-		IFingerprinter printer = new EStateFingerprinter();
-
-		BitSet bs1 = printer.getFingerprint(parser.parseSmiles("C=C-C#N"));
-		BitSet bs2 = printer.getFingerprint(parser.parseSmiles("C=CCC(O)CC#N"));
-
-        Assert.assertEquals(79,printer.getSize());
-        
-        Assert.assertTrue(bs1.get(7));
-        Assert.assertTrue(bs1.get(10));
-        Assert.assertTrue(FingerprinterTool.isSubset(bs2, bs1));
+    	SignatureFingerprinter fingerprinter = new SignatureFingerprinter(0);
+        SmilesParser sp = new SmilesParser(DefaultChemObjectBuilder.getInstance());
+        IAtomContainer mol = sp.parseSmiles("O(NC)CC");
+        Map<String,Integer> map = fingerprinter.getRawFingerprint(mol);
+        Assert.assertEquals(3, map.size());
+        String[] expectedPrints = {"[O]", "[C]", "[N]"};
+        for (String print : expectedPrints) {
+        	Assert.assertTrue(map.containsKey(print));
+        }
     }
-
 }
