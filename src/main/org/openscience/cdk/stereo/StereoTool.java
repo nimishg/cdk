@@ -28,6 +28,7 @@ import javax.vecmath.Vector3d;
 
 import org.openscience.cdk.annotations.TestClass;
 import org.openscience.cdk.annotations.TestMethod;
+import org.openscience.cdk.exception.CDKException;
 import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.ITetrahedralChirality.Stereo;
 
@@ -77,6 +78,15 @@ public class StereoTool {
 
     public static final double PLANE_TOLERANCE = 0.05;
     
+    public void checkCoordinates(IAtom... atoms) throws CDKException {
+        for (IAtom atom : atoms) {
+            if (atom.getPoint3d() == null) {
+                throw new CDKException(
+                        "Missing coordinates for atom " + atom.getID());
+            }
+        }
+    }
+
     /**
      * Checks these four atoms for square planarity.
      * 
@@ -286,10 +296,11 @@ public class StereoTool {
      * @param atom3 the third atom (points away)
      * @param atom4 the fourth atom (points away)
      * @return clockwise or anticlockwise
+     * @throws CDKException if there are missing 3D coordinates
      */
     @TestMethod("getStereoCWTest, getStereoACWTest")
     public static Stereo getStereo(
-            IAtom atom1, IAtom atom2, IAtom atom3, IAtom atom4) {
+            IAtom atom1, IAtom atom2, IAtom atom3, IAtom atom4) throws CDKException {
         
         // a normal is calculated for the base atoms (2, 3, 4) and compared to
         // the first atom. PLUS indicates ACW.
@@ -313,7 +324,8 @@ public class StereoTool {
      * @param baseAtomB the second atom in the base of the tetrahedron
      * @param baseAtomC the third atom in the base of the tetrahedron
      * @param apexAtom the atom in the point of the tetrahedron
-     * @return
+     * @return TetrahedralSign PLUS or MINUS
+     * @throws CDKException if there are missing 3D coordinates
      */
     @TestMethod("tetrahedralPlusAtomsAboveXYClockwiseTest, " +
     		    "tetrahedralPlusAtomsAboveXYTest," +

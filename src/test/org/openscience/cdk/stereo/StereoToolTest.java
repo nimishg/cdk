@@ -30,6 +30,7 @@ import junit.framework.Assert;
 import org.junit.Test;
 import org.openscience.cdk.Atom;
 import org.openscience.cdk.CDKTestCase;
+import org.openscience.cdk.exception.CDKException;
 import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.ITetrahedralChirality.Stereo;
 import org.openscience.cdk.stereo.StereoTool.SquarePlanarShape;
@@ -274,7 +275,7 @@ public class StereoToolTest extends CDKTestCase {
     }
     
     @Test
-    public void getStereoACWTest() {
+    public void getStereoACWTest() throws CDKException {
         IAtom closestAtomToViewer = new Atom("F", new Point3d(1, 1, 1));
         IAtom highestCIPPriority = new Atom("I", new Point3d(0, 1, 2));
         IAtom middleCIPPriority = new Atom("Br", new Point3d(0, 0, 0));
@@ -286,7 +287,7 @@ public class StereoToolTest extends CDKTestCase {
     }
     
     @Test
-    public void getStereoCWTest() {
+    public void getStereoCWTest() throws CDKException {
         IAtom closestAtomToViewer = new Atom("F", new Point3d(1, 1, 1));
         IAtom highestCIPPriority = new Atom("I", new Point3d(0, 1, 2));
         IAtom middleCIPPriority = new Atom("Br", new Point3d(0, 2, 0));
