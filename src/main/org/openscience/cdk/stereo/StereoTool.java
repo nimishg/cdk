@@ -78,7 +78,7 @@ public class StereoTool {
 
     public static final double PLANE_TOLERANCE = 0.05;
     
-    public void checkCoordinates(IAtom... atoms) throws CDKException {
+    public static void checkCoordinates(IAtom... atoms) throws CDKException {
         for (IAtom atom : atoms) {
             if (atom.getPoint3d() == null) {
                 throw new CDKException(
@@ -302,6 +302,7 @@ public class StereoTool {
     public static Stereo getStereo(
             IAtom atom1, IAtom atom2, IAtom atom3, IAtom atom4) throws CDKException {
         
+        checkCoordinates(atom1, atom2, atom3, atom4);
         // a normal is calculated for the base atoms (2, 3, 4) and compared to
         // the first atom. PLUS indicates ACW.
         TetrahedralSign sign = 
