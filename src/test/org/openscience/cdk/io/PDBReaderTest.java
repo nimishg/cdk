@@ -113,12 +113,12 @@ public class PDBReaderTest extends SimpleChemObjectReaderTest {
         IAtomContainer atomContainer = getFirstAtomContainer(chemFile, 1, 1, 1);
         Assert.assertEquals(new Double(2.0), atomContainer.getAtom(0).getCharge());
     }
-
+    
     @Test
     public void oldFormatNewFormatTest() throws Exception {
         String oldFormat = "ATOM      1 1HA  UNK A   1      20.662  36.632  23.475  1.00 10.00      114D  45\nEND";
         String newFormat = "ATOM      1 1HA  UNK A   1      20.662  36.632  23.475  1.00 10.00           H\nEND";
-
+        
         IChemFile oldFormatFile = getChemFileFromString(oldFormat);
         IChemFile newFormatFile = getChemFileFromString(newFormat);
         IAtomContainer acOld = getFirstAtomContainer(oldFormatFile, 1, 1, 1);
@@ -241,39 +241,39 @@ public class PDBReaderTest extends SimpleChemObjectReaderTest {
 		Assert.assertEquals(6.84, atom.getTempFactor(), 0.001);
 
 	}
-
+	
 	public IChemFile getChemFileFromString(String data) throws Exception {
 	    StringReader stringReader = new StringReader(data);
 	    PDBReader reader = new PDBReader(stringReader);
 	    Assert.assertNotNull(reader);
 	    return getChemFile(reader);
 	}
-
+	
 	public IChemFile getChemFile(String filename) throws Exception {
 	    return getChemFile(filename, false);
 	}
-
+	
 	public IChemFile getChemFile(ISimpleChemObjectReader reader) throws Exception {
 	    return getChemFile(reader, false);
 	}
-
+        
 	public IChemFile getChemFile(String filename, boolean useRebond) throws Exception {
 	       InputStream ins = this.getClass().getClassLoader().getResourceAsStream(filename);
 	       return getChemFile(new PDBReader(ins), useRebond);
 	}
-
+	
 	public IChemFile getChemFile(ISimpleChemObjectReader reader, boolean useRebond) throws Exception {
         Assert.assertNotNull(reader);
-
+        
         reader.getIOSettings()[0].setSetting(String.valueOf(useRebond));
 
         IChemFile chemFile = (IChemFile) reader.read(new NNChemFile());
         Assert.assertNotNull(chemFile);
         return chemFile;
 	}
-
+	
 	public IAtomContainer getFirstAtomContainer(IChemFile chemFile,
-					        int chemSequenceCount,
+                                    	        int chemSequenceCount,
                                                 int chemModelCount,
                                                 int moleculeCount) {
 	    Assert.assertNotNull(chemFile);
@@ -288,8 +288,8 @@ public class PDBReaderTest extends SimpleChemObjectReaderTest {
         Assert.assertEquals(moleculeCount, model.getMoleculeSet().getMoleculeCount());
         return model.getMoleculeSet().getMolecule(0);
 	}
-
-	public void testObjectCountsChemFile(IChemFile chemFile,
+	
+	public void testObjectCountsChemFile(IChemFile chemFile, 
 	                                    int chemSequenceCount,
 	                                    int chemModelCount,
 	                                    int moleculeCount,
@@ -301,7 +301,7 @@ public class PDBReaderTest extends SimpleChemObjectReaderTest {
 	            chemFile, chemSequenceCount, chemModelCount, moleculeCount);
         Assert.assertTrue(container instanceof IBioPolymer);
         IBioPolymer polymer = (IBioPolymer)container;
-
+        
         // chemical validation
         Assert.assertEquals(atomCount, ChemFileManipulator.getAtomCount(chemFile));
         Assert.assertEquals(strandCount, polymer.getStrandCount());
@@ -381,7 +381,7 @@ public class PDBReaderTest extends SimpleChemObjectReaderTest {
 	    Assert.assertEquals(0, pdb.getStructures().size());
 	      
     }
-
+    
     @Test
     public void testUnk() throws Exception {
         String filename = "data/pdb/unk.pdb";
@@ -390,11 +390,11 @@ public class PDBReaderTest extends SimpleChemObjectReaderTest {
         Assert.assertEquals(5, atomContainer.getAtomCount());
         for (IAtom atom : atomContainer.atoms()) {
             Assert.assertFalse(
-                    "Improper element symbol " + atom.getSymbol(),
+                    "Improper element symbol " + atom.getSymbol(), 
                     atom.getSymbol().equalsIgnoreCase("1h"));
         }
     }
-
+    
     @Test
     public void testHetatmOnly() throws Exception {
         String filename = "data/pdb/hetatm_only.pdb";
@@ -420,7 +420,7 @@ public class PDBReaderTest extends SimpleChemObjectReaderTest {
     @Test public void test1A00() throws Exception {
 	    String filename = "data/pdb/1A00.pdb";
 	    IChemFile chemFile = getChemFile(filename);
-        testObjectCountsChemFile(chemFile, 1, 1, 1, 4770, 4, 574, 35);
+        testObjectCountsChemFile(chemFile, 1, 1, 1, 4770, 4, 574, 35);  
     }
 
     @Test public void test1BOQ() throws Exception {

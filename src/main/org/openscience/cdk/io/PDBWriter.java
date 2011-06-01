@@ -59,7 +59,8 @@ import org.openscience.cdk.tools.manipulator.ChemModelManipulator;
 /**
  * Saves small molecules in a rudimentary PDB format. It does not allow
  * writing of PDBProtein data structures.
- *
+ * 
+ * @author      Gilleain Torrance <gilleain.torrance@gmail.com>
  * @cdk.module io
  * @cdk.githash
  */
@@ -70,7 +71,7 @@ public class PDBWriter extends DefaultChemObjectWriter {
     public final String ATOM_NAME_FORMAT = "%-5s";
     public final String POSITION_FORMAT = "%8.3f";
     public final String RESIDUE_FORMAT = "%s";
-
+    
     private BooleanIOSetting writeAsHET;
     private BooleanIOSetting useElementSymbolAsAtomName;
     private BooleanIOSetting writeCONECTRecords;
@@ -97,16 +98,16 @@ public class PDBWriter extends DefaultChemObjectWriter {
             }
         } catch (Exception exc) {
         }
-        writeAsHET = new BooleanIOSetting("WriteAsHET", IOSetting.LOW,
+        writeAsHET = new BooleanIOSetting("WriteAsHET", IOSetting.LOW, 
                         "Should the output file use HETATM", "false");
         useElementSymbolAsAtomName = new BooleanIOSetting(
-                "UseElementSymbolAsAtomName", IOSetting.LOW,
+                "UseElementSymbolAsAtomName", IOSetting.LOW, 
                 "Should the element symbol be written as the atom name", "false");
-        writeCONECTRecords = new BooleanIOSetting("WriteCONECT", IOSetting.LOW,
+        writeCONECTRecords = new BooleanIOSetting("WriteCONECT", IOSetting.LOW, 
                 "Should the bonds be written as CONECT records?", "true");
-        writeTERRecord = new BooleanIOSetting("WriteTER", IOSetting.LOW,
+        writeTERRecord = new BooleanIOSetting("WriteTER", IOSetting.LOW, 
                 "Should a TER record be put at the end of the atoms?", "false");
-        writeENDRecord = new BooleanIOSetting("WriteEND", IOSetting.LOW,
+        writeENDRecord = new BooleanIOSetting("WriteEND", IOSetting.LOW, 
                 "Should an END record be put at the end of the file?", "true");
     }
 
@@ -240,14 +241,14 @@ public class PDBWriter extends DefaultChemObjectWriter {
                        buffer.append("+").append(formalCharge);
                    }
                }
-
+               
                if (connectRecords != null && writeCONECTRecords.isSet()) {
                    List<IAtom> neighbours = molecule.getConnectedAtomsList(atom);
                    if (neighbours.size() != 0) {
                        StringBuffer connectBuffer = new StringBuffer("CONECT");
                        connectBuffer.append(String.format("%5d", atomNumber));
                        for (IAtom neighbour : neighbours) {
-                           int neighbourNumber =
+                           int neighbourNumber = 
                                molecule.getAtomNumber(neighbour) + 1;
                            connectBuffer.append(
                                    String.format("%5d", neighbourNumber));
@@ -257,17 +258,17 @@ public class PDBWriter extends DefaultChemObjectWriter {
                        connectRecords[atomNumber - 1] = null;
                    }
                }
-
+               
                writer.write(buffer.toString(), 0, buffer.length());
                writer.newLine();
                ++atomNumber;
            }
-
+           
            if (writeTERRecord.isSet()) {
                writer.write(terRecordName, 0, terRecordName.length());
                writer.newLine();
            }
-
+           
            if (connectRecords != null && writeCONECTRecords.isSet()) {
                for (String connectRecord : connectRecords) {
                    if (connectRecord != null) {
@@ -276,12 +277,12 @@ public class PDBWriter extends DefaultChemObjectWriter {
                    }
                }
            }
-
+           
            if (writeENDRecord.isSet()) {
                writer.write("END   ");
                writer.newLine();
            }
-
+           
        } catch (IOException exception) {
            throw new CDKException("Error while writing file: " + exception.getMessage(), exception);
        }
@@ -291,7 +292,7 @@ public class PDBWriter extends DefaultChemObjectWriter {
        writer.write("HEADER created with the CDK (http://cdk.sf.net/)");
        writer.newLine();
    }
-
+    
    public void writeCrystal(ICrystal crystal) throws CDKException {
        try {
            writeHeader();
@@ -341,6 +342,16 @@ public class PDBWriter extends DefaultChemObjectWriter {
    public void close() throws IOException {
         writer.close();
     }
+   
+   public IOSetting[] getIOSettings() {
+       IOSetting[] settings = new IOSetting[7];
+       settings[0] = writeAsHET;
+       settings[1] = useElementSymbolAsAtomName;
+       settings[2] = writeCONECTRecords;
+       settings[3] = writeTERRecord;
+       settings[4] = writeENDRecord;
+       return settings;
+   }
 
    public IOSetting[] getIOSettings() {
        IOSetting[] settings = new IOSetting[7];

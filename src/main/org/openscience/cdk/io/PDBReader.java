@@ -82,6 +82,7 @@ import org.openscience.cdk.tools.manipulator.AtomTypeManipulator;
  * @author      Bradley Smith <bradley@baysmith.com>
  * @author      Martin Eklund <martin.eklund@farmbio.uu.se>
  * @author      Ola Spjuth <ola.spjuth@farmbio.uu.se>
+ * @author      Gilleain Torrance <gilleain.torrance@gmail.com>
  * @cdk.created 2001-08-06
  * @cdk.keyword file format, PDB
  * @cdk.bug     1714141
@@ -113,12 +114,12 @@ public class PDBReader extends DefaultChemObjectReader {
 	 * names; for example "RFB.N13" maps to "N.planar3".
 	 */
 	private Map<String, String> hetDictionary;
-
+	
 	private AtomTypeFactory cdkAtomTypeFactory;
-
-	private static final String hetDictionaryPath =
+	
+	private static final String hetDictionaryPath = 
 	    "org/openscience/cdk/config/data/type_map.txt";
-
+	
 	/**
 	 *
 	 * Constructs a new PDBReader that can read Molecules from a given
@@ -318,7 +319,7 @@ public class PDBReader extends DefaultChemObjectReader {
 						} else {
 							molecularStructure.addAtom(oAtom);
 						}
-
+						
 						if (readConnect.isSet() && atomNumberMap.put(oAtom.getSerial(), oAtom) != null) {
 						    logger.warn("Duplicate serial ID found for atom: ", oAtom);
 						}
@@ -366,7 +367,7 @@ public class PDBReader extends DefaultChemObjectReader {
 						    createBondsWithRebondTool(molecularStructure);
 							oSet.addMolecule(molecularStructure);
 						}
-
+						
 					} else if (cCol.equals("MODEL ")) {
 						// OK, start a new model and save the current one first *if* it contains atoms
 						if (isProteinStructure) {
@@ -425,10 +426,10 @@ public class PDBReader extends DefaultChemObjectReader {
 						    while (lineIndex + 5 <= cRead.length()) {
 						        String part = cRead.substring(lineIndex, lineIndex + 5).trim();
 						        if (atomFromNumber == -1) {
-						        try {
-						            atomFromNumber = Integer.parseInt(part);
-						        } catch (NumberFormatException nfe) {
-						        }
+    						        try {
+    						            atomFromNumber = Integer.parseInt(part);
+    						        } catch (NumberFormatException nfe) {
+    						        }
 						        } else {
 						            try {
                                         atomToNumber = Integer.parseInt(part);
@@ -538,7 +539,7 @@ public class PDBReader extends DefaultChemObjectReader {
 		try {
 //			 configure atoms
 		      AtomTypeFactory factory = AtomTypeFactory.getInstance("org/openscience/cdk/config/data/jmol_atomtypes.txt", 
-			  molecule.getBuilder());
+		    	  molecule.getBuilder());
 		      for (IAtom atom : molecule.atoms()) {
 		        try {
 		        	IAtomType[] types = factory.getAtomTypes(atom.getSymbol());
@@ -564,7 +565,7 @@ public class PDBReader extends DefaultChemObjectReader {
 	/**
 	 * Creates an <code>Atom</code> and sets properties to their values from
 	 * the ATOM or HETATM record. If the line is shorter than 80 characters, the
-	 * information past 59 characters is treated as optional. If the line is
+	 * information past 59 characters is treated as optional. If the line is 
 	 * shorter than 59 characters, a <code>RuntimeException</code> is thrown.
 	 *
 	 * @param cLine  the PDB ATOM or HEATATM record.
@@ -603,11 +604,11 @@ public class PDBReader extends DefaultChemObjectReader {
 		    if (Character.isDigit(elementSymbol.charAt(0))) {
 		        elementSymbol = elementSymbol.substring(1);
 		    } else {
-		        elementSymbol = elementSymbol.charAt(0)
+		        elementSymbol = elementSymbol.charAt(0) 
 		                      + elementSymbol.substring(1).toLowerCase();
 		    }
 		}
-
+		
 		String rawAtomName = cLine.substring(12, 16).trim();
 		String resName = cLine.substring(17, 20).trim();
 		boolean isHetatm;
@@ -697,7 +698,7 @@ public class PDBReader extends DefaultChemObjectReader {
 	private String typeHetatm(String resName, String atomName) {
 	    if (hetDictionary == null) {
 	        readHetDictionary();
-	        cdkAtomTypeFactory =
+	        cdkAtomTypeFactory = 
 	            AtomTypeFactory.getInstance(
 	                    "org/openscience/cdk/dict/data/cdk-atom-types.owl",
 	                    DefaultChemObjectBuilder.getInstance());
@@ -708,12 +709,12 @@ public class PDBReader extends DefaultChemObjectReader {
 	    }
 	    return null;
 	}
-
+	
 	private void readHetDictionary() {
 	    try {
-	        InputStream ins =
+	        InputStream ins = 
 	            getClass().getClassLoader().getResourceAsStream(hetDictionaryPath);
-	        BufferedReader bufferedReader =
+	        BufferedReader bufferedReader = 
 	            new BufferedReader(new InputStreamReader(ins));
 	        hetDictionary = new HashMap<String, String>();
 	        String line;
@@ -733,7 +734,7 @@ public class PDBReader extends DefaultChemObjectReader {
 	        logger.error(ioe.getMessage());
 	    }
 	}
-
+	
 	@TestMethod("testClose")
   public void close() throws IOException {
 		_oInput.close();
@@ -747,7 +748,7 @@ public class PDBReader extends DefaultChemObjectReader {
           "Should the CONECT be read?",
           "true");
         useHetDictionary = new BooleanIOSetting("UseHetDictionary", IOSetting.LOW,
-          "Should the PDBReader use the HETATM dictionary for atom types?",
+          "Should the PDBReader use the HETATM dictionary for atom types?", 
           "false");
     }
     
