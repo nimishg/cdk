@@ -1214,6 +1214,11 @@ public class CDKAtomTypeMatcher implements IAtomTypeMatcher {
                     return type;//Fix 109//
                 }//changes made here//
             }
+        } else if (neighborcount == 0) {
+            IAtomType type = getAtomType("S.1.0");
+            if (isAcceptable(atom, atomContainer, type)) {
+                return type;//Fix 109//
+            }//changes made here//
         } else if (neighborcount == 3) {
             int doubleBondedAtoms = countAttachedDoubleBonds(atomContainer, atom);
             if (doubleBondedAtoms == 1) {
@@ -2641,14 +2646,14 @@ public class CDKAtomTypeMatcher implements IAtomTypeMatcher {
             if (atom.getFormalCharge() != CDKConstants.UNSET
                     && atom.getFormalCharge() == 0
                     && atomContainer.getConnectedBondsCount(atom) == 6) {
-                IAtomType type = getAtomType("Cr");
+                IAtomType type = getAtomType("Cr.neutral.6");
                 if (isAcceptable(atom, atomContainer, type)) {
                     return type;
                 }
             } else if (atom.getFormalCharge() != CDKConstants.UNSET
                     && atom.getFormalCharge() == 0
                     && atomContainer.getConnectedBondsCount(atom) == 4) {
-                IAtomType type = getAtomType("Cr.6");
+                IAtomType type = getAtomType("Cr.4");
                 if (isAcceptable(atom, atomContainer, type)) {
                     return type;
                 } // Fix83 //
@@ -2659,6 +2664,13 @@ public class CDKAtomTypeMatcher implements IAtomTypeMatcher {
                 if (isAcceptable(atom, atomContainer, type)) {
                     return type;
                 } // Fix98 //
+            } else if (atom.getFormalCharge() != CDKConstants.UNSET
+                    && atom.getFormalCharge() == 0
+                    && atomContainer.getConnectedBondsCount(atom) == 0) {
+                IAtomType type = getAtomType("Cr.neutral");
+                if (isAcceptable(atom, atomContainer, type)) {
+                    return type;
+                } // Fix111 //
             }
         } else if ("Mo".equals(atom.getSymbol())) {
             if (atom.getFormalCharge() != CDKConstants.UNSET
