@@ -1208,6 +1208,11 @@ public class CDKAtomTypeMatcher implements IAtomTypeMatcher {
                 if (isAcceptable(atom, atomContainer, type)) {
                     return type;
                 }//changes made here//
+            } else if (atomContainer.getConnectedBondsList(atom).get(0).getOrder() == CDKConstants.BONDORDER_SINGLE) {
+                IAtomType type = getAtomType("S.1.1");
+                if (isAcceptable(atom, atomContainer, type)) {
+                    return type;//Fix 109//
+                }//changes made here//
             }
         } else if (neighborcount == 3) {
             int doubleBondedAtoms = countAttachedDoubleBonds(atomContainer, atom);
@@ -1705,7 +1710,6 @@ public class CDKAtomTypeMatcher implements IAtomTypeMatcher {
                 return null;
             } else if (atom.getFormalCharge() != CDKConstants.UNSET
                     && atom.getFormalCharge() != 0) {
-                System.out.println("atom.getFormalCharge() " + atom.getFormalCharge());
                 if (atom.getFormalCharge() == -1) {
                     if (atomContainer.getConnectedAtomsCount(atom) == 0) {
                         IAtomType type = getAtomType("I.minus");
