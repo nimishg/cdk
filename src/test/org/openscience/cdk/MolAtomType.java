@@ -38,7 +38,7 @@ public class MolAtomType {
         bufferedWriter.newLine();
         for (String fileName : files.list()) {
 
-            if (fileName.equalsIgnoreCase("C19421.mol")) {
+            if (fileName.equalsIgnoreCase("C06268.mol")) {
 
                 File f = new File(molDir + File.separator + fileName);
                 MDLV2000Reader reader = new MDLV2000Reader(new FileReader(f));
