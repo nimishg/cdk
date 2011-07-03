@@ -216,7 +216,7 @@ public class StereoTool {
      * @param atomE one of the equatorial atoms
      * @param atomF one of the equatorial atoms
      * @param atomG the other axial atom
-     * @return
+     * @return true if the geometry is octahedral
      */
     @TestMethod("octahedralTest")
     public static boolean isOctahedral(IAtom atomA, IAtom atomB, IAtom atomC,
@@ -254,7 +254,7 @@ public class StereoTool {
      * @param atomD one of the equatorial atoms
      * @param atomE one of the equatorial atoms
      * @param atomF the other axial atom
-     * @return
+     * @return true if the geometry is trigonal-bipyramidal
      */
     @TestMethod("trigonalBipyramidalTest")
     public static boolean isTrigonalBipyramidal(IAtom atomA, IAtom atomB, 
@@ -374,7 +374,7 @@ public class StereoTool {
      * @param ptA
      * @param ptB
      * @param ptC
-     * @return
+     * @return true if the tree points are on a straight line
      */
     @TestMethod("colinearTestWithColinearPoints," +
     		"colinearTestWithNearlyColinearPoints," +
