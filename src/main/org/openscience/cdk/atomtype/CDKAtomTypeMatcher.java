@@ -2231,16 +2231,16 @@ public class CDKAtomTypeMatcher implements IAtomTypeMatcher {
                 }
             } else if ((atom.getFormalCharge() != CDKConstants.UNSET
                     && atom.getFormalCharge() == 0)) {
-                IAtomType type = getAtomType("Cd.metallic");
-                if (isAcceptable(atom, atomContainer, type)) {
-                    return type;// Fix33 //
-                }
-            } else if ((atom.getFormalCharge() != CDKConstants.UNSET
-                    && atom.getFormalCharge() == 0)
-                    && atomContainer.getConnectedAtomsCount(atom) == 2) {
-                IAtomType type = getAtomType("Cd.2");
-                if (isAcceptable(atom, atomContainer, type)) {
-                    return type;// Fix115 //
+                if (atomContainer.getConnectedAtomsCount(atom) == 0) {
+                    IAtomType type = getAtomType("Cd.metallic");
+                    if (isAcceptable(atom, atomContainer, type)) {
+                        return type;// Fix33 //
+                    }
+                } else if (atomContainer.getConnectedAtomsCount(atom) == 2) {
+                    IAtomType type = getAtomType("Cd.2");
+                    if (isAcceptable(atom, atomContainer, type)) {
+                        return type;// Fix115 //
+                    }
                 }
             }
         } else if ("Au".equals(atom.getSymbol())) {
