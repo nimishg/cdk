@@ -1491,7 +1491,7 @@ public class CDKAtomTypeMatcher implements IAtomTypeMatcher {
                 return null;
             } else if (atom.getFormalCharge() == CDKConstants.UNSET
                     || atom.getFormalCharge() == 0) {
-                //int neighborcount = atomContainer.getConnectedBondsCount(atom);
+                int neighborcount = atomContainer.getConnectedBondsCount(atom);
                 IBond.Order maxBondOrder = atomContainer.getMaximumBondOrder(atom);
 
                 if (maxBondOrder == IBond.Order.DOUBLE) {
@@ -1511,6 +1511,11 @@ public class CDKAtomTypeMatcher implements IAtomTypeMatcher {
                         if (isAcceptable(atom, atomContainer, type)) {
                             return type;
                         }
+                    }
+                } else if (neighborcount <= 1) {
+                    IAtomType type = getAtomType("Cl");
+                    if (isAcceptable(atom, atomContainer, type)) {
+                        return type;
                     }
                 }
             } else if ((atom.getFormalCharge() != CDKConstants.UNSET
@@ -1535,12 +1540,6 @@ public class CDKAtomTypeMatcher implements IAtomTypeMatcher {
             } else if ((atom.getFormalCharge() != CDKConstants.UNSET
                     && atom.getFormalCharge() == +3) && atomContainer.getConnectedBondsCount(atom) == 4) {
                 IAtomType type = getAtomType("Cl.perchlorate.charged");
-                if (isAcceptable(atom, atomContainer, type)) {
-                    return type;
-                }
-            } else if (atomContainer.getConnectedBondsCount(atom) == 1
-                    || atomContainer.getConnectedBondsCount(atom) == 0) {
-                IAtomType type = getAtomType("Cl");
                 if (isAcceptable(atom, atomContainer, type)) {
                     return type;
                 }
