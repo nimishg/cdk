@@ -1141,6 +1141,7 @@ public class CDKAtomTypeMatcher implements IAtomTypeMatcher {
             }
         } else if (atom.getFormalCharge() != CDKConstants.UNSET
                 && atom.getFormalCharge() != 0) {
+
             if (atom.getFormalCharge() == -1
                     && neighborcount == 1) {
                 IAtomType type = getAtomType("S.minus");
@@ -1165,14 +1166,22 @@ public class CDKAtomTypeMatcher implements IAtomTypeMatcher {
                 if (isAcceptable(atom, atomContainer, type)) {
                     return type;
                 }
+            } else if (atom.getFormalCharge() == -2
+                    && neighborcount == 0) {
+                IAtomType type = getAtomType("S.2minus");
+                if (isAcceptable(atom, atomContainer, type)) {
+                    return type;
+                }
             }
         } else if (neighborcount == 0) {
-            IAtomType type = getAtomType("S.sp3");
-            if (isAcceptable(atom, atomContainer, type)) {
-                return type;//Fix 109//
-            }//changes made here//
-        }
-        if (neighborcount == 1) {
+            if (atom.getFormalCharge() != CDKConstants.UNSET
+                    && atom.getFormalCharge() == 0) {
+                IAtomType type = getAtomType("S.sp3");
+                if (isAcceptable(atom, atomContainer, type)) {
+                    return type;//Fix 109//
+                }//changes made here//
+            }
+        } else if (neighborcount == 1) {
             if (atomContainer.getConnectedBondsList(atom).get(0).getOrder() == CDKConstants.BONDORDER_DOUBLE) {
                 IAtomType type = getAtomType("S.sp2.1");
                 if (isAcceptable(atom, atomContainer, type)) {
@@ -2159,7 +2168,7 @@ public class CDKAtomTypeMatcher implements IAtomTypeMatcher {
                 // no idea how to deal with this yet
                 return null;
             } else if ((atom.getFormalCharge() != null
-                    || atom.getFormalCharge() == 0)) {
+                    && atom.getFormalCharge() == 0)) {
                 int neighbors = atomContainer.getConnectedAtomsCount(atom);
                 if (neighbors == 2) {
                     IAtomType type02 = getAtomType("Mn.2");
@@ -2176,6 +2185,12 @@ public class CDKAtomTypeMatcher implements IAtomTypeMatcher {
             } else if ((atom.getFormalCharge() != null
                     && atom.getFormalCharge() == +2)) {
                 IAtomType type = getAtomType("Mn.2plus");
+                if (isAcceptable(atom, atomContainer, type)) {
+                    return type;
+                }
+            } else if ((atom.getFormalCharge() != null
+                    && atom.getFormalCharge() == +3)) {
+                IAtomType type = getAtomType("Mn.3plus");
                 if (isAcceptable(atom, atomContainer, type)) {
                     return type;
                 }
