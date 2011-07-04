@@ -86,6 +86,7 @@
   <Hybridization rdf:ID="sp3"/>
   <Hybridization rdf:ID="octahedral"/>
   <Hybridization rdf:ID="sp3d2"/>
+  <Hybridization rdf:ID="sp3d1"/>
   <Hybridization rdf:ID="planar"/>
   <Hybridization rdf:ID="tetrahedral"/>
 
