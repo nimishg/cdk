@@ -917,7 +917,7 @@
     <at:hybridization rdf:resource="&at;sp3"/>
   </at:AtomType>
 
-  <at:AtomType rdf:ID="Cl.perchlorate">
+  <at:AtomType rdf:ID="Cl.4">
     <at:formalCharge>0</at:formalCharge>
     <at:hasElement rdf:resource="&elem;Cl"/>
     <at:formalNeighbourCount>4</at:formalNeighbourCount>
@@ -935,13 +935,22 @@
     <at:hybridization rdf:resource="&at;sp3"/>
   </at:AtomType>
 
-  <at:AtomType rdf:ID="Cl.chlorate">
+  <at:AtomType rdf:ID="Cl.2">
+    <at:formalCharge>0</at:formalCharge>
+    <at:hasElement rdf:resource="&elem;Cl"/>
+    <at:formalNeighbourCount>2</at:formalNeighbourCount>
+    <at:lonePairCount>2</at:lonePairCount>
+    <at:piBondCount>1</at:piBondCount>
+    <at:hybridization rdf:resource="&at;sp3"/>
+  </at:AtomType> // Fix50 // done in CDKAtomTypeMatcher //
+
+  <at:AtomType rdf:ID="Cl.3">
     <at:formalCharge>0</at:formalCharge>
     <at:hasElement rdf:resource="&elem;Cl"/>
     <at:formalNeighbourCount>3</at:formalNeighbourCount>
-    <at:lonePairCount>0</at:lonePairCount>
+    <at:lonePairCount>1</at:lonePairCount>
     <at:piBondCount>2</at:piBondCount>
-    <at:hybridization rdf:resource="&at;sp2"/>
+    <at:hybridization rdf:resource="&at;sp3"/>
   </at:AtomType>
 
   <at:AtomType rdf:ID="I">
@@ -1718,33 +1727,6 @@
     <at:piBondCount>2</at:piBondCount>
       </at:AtomType> // Fix49 //done in CDKAtomTypeMatcher //
 
-  <at:AtomType rdf:ID="Cl.2">
-    <at:formalCharge>0</at:formalCharge>
-    <at:hasElement rdf:resource="&elem;Cl"/>
-    <at:formalNeighbourCount>2</at:formalNeighbourCount>
-    <at:lonePairCount>2</at:lonePairCount>
-    <at:piBondCount>1</at:piBondCount>
-    <at:hybridization rdf:resource="&at;sp3"/>
-  </at:AtomType> // Fix50 // done in CDKAtomTypeMatcher //
-
-   <at:AtomType rdf:ID="Cl.3">
-    <at:formalCharge>0</at:formalCharge>
-    <at:hasElement rdf:resource="&elem;Cl"/>
-    <at:formalNeighbourCount>3</at:formalNeighbourCount>
-    <at:lonePairCount>1</at:lonePairCount>
-    <at:piBondCount>2</at:piBondCount>
-    <at:hybridization rdf:resource="&at;sp3"/>
-  </at:AtomType> // Fix51.1 // done in CDKAtomTypeMatcher //
-
-  <at:AtomType rdf:ID="Cl.4">
-    <at:formalCharge>0</at:formalCharge>
-    <at:hasElement rdf:resource="&elem;Cl"/>
-    <at:formalNeighbourCount>4</at:formalNeighbourCount>
-    <at:lonePairCount>0</at:lonePairCount>
-    <at:piBondCount>3</at:piBondCount>
-    <at:hybridization rdf:resource="&at;sp3"/>
-  </at:AtomType> // Fix100 // done in CDKAtomTypeMatcher //
-
     <at:AtomType rdf:ID="Pb.neutral">
     <at:formalCharge>0</at:formalCharge>
     <at:hasElement rdf:resource="&elem;Pb"/>
@@ -1864,15 +1846,6 @@
     <at:piBondCount>1</at:piBondCount>
     <at:hybridization rdf:resource="&at;sp3"/>
   </at:AtomType> // Fix64 // done in CDKAtomTypeMatcher //
-
-<at:AtomType rdf:ID="Cl.2.1">
-    <at:formalCharge>0</at:formalCharge>
-    <at:hasElement rdf:resource="&elem;Cl"/>
-    <at:formalNeighbourCount>2</at:formalNeighbourCount>
-    <at:lonePairCount>1</at:lonePairCount>
-    <at:piBondCount>0</at:piBondCount>
-    <at:hybridization rdf:resource="&at;sp3"/>
-  </at:AtomType> // Fix65 //done in CDKAtomTypeMatcher //
 
 <at:AtomType rdf:ID="Rb.plus">
     <at:formalCharge>1</at:formalCharge>

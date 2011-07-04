@@ -1464,7 +1464,6 @@ public class CDKAtomTypeMatcher implements IAtomTypeMatcher {
             throws CDKException {
         if ("Cl".equals(atom.getSymbol())) {
             if (hasOneSingleElectron(atomContainer, atom)) {
-
                 if (atomContainer.getConnectedBondsCount(atom) > 1) {
                     if (atom.getFormalCharge() != CDKConstants.UNSET
                             && atom.getFormalCharge() == +1) {
@@ -1513,13 +1512,6 @@ public class CDKAtomTypeMatcher implements IAtomTypeMatcher {
                             return type;
                         }
                     }
-
-                } else if (maxBondOrder == IBond.Order.SINGLE) {
-                    IAtomType type = getAtomType("Cl.2.1");
-                    if (isAcceptable(atom, atomContainer, type)) {
-                        return type; // Fix65 //
-                    }
-
                 }
             } else if ((atom.getFormalCharge() != CDKConstants.UNSET
                     && atom.getFormalCharge() == -1)) {
@@ -1556,13 +1548,13 @@ public class CDKAtomTypeMatcher implements IAtomTypeMatcher {
                 int doubleBonds = countAttachedDoubleBonds(atomContainer, atom);
                 if (atomContainer.getConnectedBondsCount(atom) == 3
                         && doubleBonds == 2) {
-                    IAtomType type = getAtomType("Cl.chlorate");
+                    IAtomType type = getAtomType("Cl.3");
                     if (isAcceptable(atom, atomContainer, type)) {
                         return type;
                     }
                 } else if (atomContainer.getConnectedBondsCount(atom) == 4
                         && doubleBonds == 3) {
-                    IAtomType type = getAtomType("Cl.perchlorate");
+                    IAtomType type = getAtomType("Cl.4");
                     if (isAcceptable(atom, atomContainer, type)) {
                         return type;
                     }
