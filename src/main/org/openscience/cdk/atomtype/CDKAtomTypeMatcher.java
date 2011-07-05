@@ -228,7 +228,6 @@ public class CDKAtomTypeMatcher implements IAtomTypeMatcher {
                 if (isAcceptable(atom, atomContainer, type)) {
                     return type;
                 }
-
             } else if (atomContainer.getConnectedAtomsCount(atom) == 1) {
 
                 if (doublebondcount == 1) {
@@ -254,7 +253,6 @@ public class CDKAtomTypeMatcher implements IAtomTypeMatcher {
                         return type;
                     }
                 }
-
             } else if (atomContainer.getConnectedAtomsCount(atom) == 3) {
                 IAtomType type = getAtomType("Se.3");
                 if (isAcceptable(atom, atomContainer, type)) {
@@ -279,10 +277,22 @@ public class CDKAtomTypeMatcher implements IAtomTypeMatcher {
                     return type;
                 }
             }
+        } else if ((atom.getFormalCharge() != CDKConstants.UNSET && atom.getFormalCharge() == 4)
+                && atomContainer.getConnectedAtomsCount(atom) == 0) {
+            IAtomType type = getAtomType("Se.4plus");
+            if (isAcceptable(atom, atomContainer, type)) {
+                return type; // Fix108 //
+            }
+        } else if ((atom.getFormalCharge() != CDKConstants.UNSET && atom.getFormalCharge() == 1)
+                && atomContainer.getConnectedAtomsCount(atom) == 3) {
+            IAtomType type = getAtomType("Se.plus.3");
+            if (isAcceptable(atom, atomContainer, type)) {
+                return type;
+            }// Fix61
         }
         return null;
     }
-    
+
     private IAtomType perceiveBorons(IAtomContainer atomContainer, IAtom atom)
             throws CDKException {
         IBond.Order maxBondOrder = atomContainer.getMaximumBondOrder(atom);
