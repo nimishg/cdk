@@ -220,55 +220,69 @@ public class CDKAtomTypeMatcher implements IAtomTypeMatcher {
     }
 
     private IAtomType perceiveSelenium(IAtomContainer atomContainer, IAtom atom) throws CDKException {
-
+        int doublebondcount = countAttachedDoubleBonds(atomContainer, atom);
         if (atom.getFormalCharge() != CDKConstants.UNSET
                 && atom.getFormalCharge() == 0) {
-            if (atomContainer.getConnectedAtomsCount(atom) == 1) {
-                System.out.println("Jello " + hasHybridization(atom));
-                if (hasHybridization(atom) && atom.getHybridization() == Hybridization.SP2) {
-                    IAtomType type = getAtomType("Se.1");
-                    if (isAcceptable(atom, atomContainer, type)) {
-                        return type; // Fix58 //
-                    }
-                } else if (hasHybridization(atom) && atom.getHybridization() == Hybridization.SP3) {
-                    IAtomType type = getAtomType("Se.2");
-                    if (isAcceptable(atom, atomContainer, type)) {
-                        return type;
-                    }
-                }
-            } else if (atomContainer.getConnectedAtomsCount(atom) == 2) {
+            if (atomContainer.getConnectedAtomsCount(atom) == 0) {
                 IAtomType type = getAtomType("Se.2");
                 if (isAcceptable(atom, atomContainer, type)) {
                     return type;
                 }
+
+            } else if (atomContainer.getConnectedAtomsCount(atom) == 1) {
+
+                if (doublebondcount == 1) {
+                    IAtomType type = getAtomType("Se.1");
+                    if (isAcceptable(atom, atomContainer, type)) {
+                        return type; // Fix58 //
+                    }// on the basis of double bond no of double bonds
+                } else if (doublebondcount == 0) {
+                    IAtomType type = getAtomType("Se.2");
+                    if (isAcceptable(atom, atomContainer, type)) {
+                        return type;
+                    }
+                }// 0 connected Se.2 and for 2 connected max is single bond
+            } else if (atomContainer.getConnectedAtomsCount(atom) == 2) {
+                if (doublebondcount == 0) {
+                    IAtomType type = getAtomType("Se.2");
+                    if (isAcceptable(atom, atomContainer, type)) {
+                        return type; // Fix58 //
+                    }// on the basis of double bond no of double bonds
+                } else if (doublebondcount == 2) {
+                    IAtomType type = getAtomType("Se.sp2.2");
+                    if (isAcceptable(atom, atomContainer, type)) {
+                        return type;
+                    }
+                }
+
             } else if (atomContainer.getConnectedAtomsCount(atom) == 3) {
-                IAtomType type = getAtomType("Se.4");
+                IAtomType type = getAtomType("Se.3");
                 if (isAcceptable(atom, atomContainer, type)) {
                     return type; // Fix59 //
                 }
-            } else if (atomContainer.getConnectedAtomsCount(atom) == 4) {
-                IAtomType type = getAtomType("Se.6");
+            }// double bonds =2
+            else if (atomContainer.getConnectedAtomsCount(atom) == 4) {
+                if (doublebondcount == 2) {
+                    IAtomType type = getAtomType("Se.sp3.4");
+                    if (isAcceptable(atom, atomContainer, type)) {
+                        return type;
+                    }
+                } else if (doublebondcount == 0) {
+                    IAtomType type = getAtomType("Se.sp3d1.4");
+                    if (isAcceptable(atom, atomContainer, type)) {
+                        return type;
+                    }
+                }
+            } else if (atomContainer.getConnectedAtomsCount(atom) == 5) {
+                IAtomType type = getAtomType("Se.5");
                 if (isAcceptable(atom, atomContainer, type)) {
-                    return type; // Fix60 //
+                    return type;
                 }
             }
-        } else if ((atom.getFormalCharge() != CDKConstants.UNSET && atom.getFormalCharge() == 4)
-                && atomContainer.getConnectedAtomsCount(atom) == 0) {
-            IAtomType type = getAtomType("Se.4plus");
-            if (isAcceptable(atom, atomContainer, type)) {
-                return type; // Fix108 //
-            }
-        } else if ((atom.getFormalCharge() != CDKConstants.UNSET && atom.getFormalCharge() == 1)
-                && atomContainer.getConnectedAtomsCount(atom) == 3) {
-            IAtomType type = getAtomType("Se.plus.3");
-            if (isAcceptable(atom, atomContainer, type)) {
-                return type;
-            }// Fix61
-
         }
         return null;
     }
-
+    
     private IAtomType perceiveBorons(IAtomContainer atomContainer, IAtom atom)
             throws CDKException {
         IBond.Order maxBondOrder = atomContainer.getMaximumBondOrder(atom);
