@@ -1340,7 +1340,7 @@ public class CDKAtomTypeMatcher implements IAtomTypeMatcher {
         List<IBond> neighbors = atomContainer.getConnectedBondsList(atom);
         int neighborcount = neighbors.size();
         IBond.Order maxBondOrder = atomContainer.getMaximumBondOrder(atom);
-
+        System.out.println("N " + neighborcount);
         if (countSingleElectrons(atomContainer, atom) == 3) {
             IAtomType type = getAtomType("P.se.3");
             if (isAcceptable(atom, atomContainer, type)) {
@@ -1349,8 +1349,7 @@ public class CDKAtomTypeMatcher implements IAtomTypeMatcher {
         } else if (hasOneSingleElectron(atomContainer, atom)) {
             // no idea how to deal with this yet
             return null;
-        } else if (atom.getImplicitHydrogenCount() != CDKConstants.UNSET
-                && neighborcount == 0) {
+        } else if (neighborcount == 0) {
             if (atom.getAtomicNumber() == 15) {
                 IAtomType type = getAtomType("P.32");
                 if (isAcceptable(atom, atomContainer, type)) {
