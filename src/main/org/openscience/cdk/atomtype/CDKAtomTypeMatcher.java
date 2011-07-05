@@ -1340,7 +1340,6 @@ public class CDKAtomTypeMatcher implements IAtomTypeMatcher {
         List<IBond> neighbors = atomContainer.getConnectedBondsList(atom);
         int neighborcount = neighbors.size();
         IBond.Order maxBondOrder = atomContainer.getMaximumBondOrder(atom);
-        System.out.println("N " + neighborcount);
         if (countSingleElectrons(atomContainer, atom) == 3) {
             IAtomType type = getAtomType("P.se.3");
             if (isAcceptable(atom, atomContainer, type)) {
