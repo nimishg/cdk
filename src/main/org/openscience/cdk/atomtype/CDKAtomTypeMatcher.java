@@ -1,6 +1,8 @@
 /* $Revision$ $Author$ $Date$
  *
  * Copyright (C) 2007-2008  Egon Willighagen <egonw@users.sf.net>
+ *               2011       Nimish Gopal <gopal.nimish@gmail.com>
+ *               2011       Syed Asad Rahman <asad@ebi.ac.uk>
  *
  * Contact: cdk-devel@lists.sourceforge.net
  *
@@ -2042,15 +2044,10 @@ public class CDKAtomTypeMatcher implements IAtomTypeMatcher {
             } else if ((atom.getFormalCharge() != null
                     && atom.getFormalCharge() == 2)) {
                 int neighbors = atomContainer.getConnectedAtomsCount(atom);
-                if (neighbors == 1) {
-                    IAtomType type = getAtomType("Fe.2plus.1");
-                    if (isAcceptable(atom, atomContainer, type)) {
-                        return type;// Fix24 //
-                    }
-                } else if (neighbors == 0) {
+                if (neighbors <= 1) {
                     IAtomType type = getAtomType("Fe.2plus");
                     if (isAcceptable(atom, atomContainer, type)) {
-                        return type;// Fix25 //
+                        return type;// Fix24 //
                     }
                 }
             } else if ((atom.getFormalCharge() != null
@@ -2096,15 +2093,19 @@ public class CDKAtomTypeMatcher implements IAtomTypeMatcher {
             } else if ((atom.getFormalCharge() != null
                     && atom.getFormalCharge() == +2)) {
                 int neighbors = atomContainer.getConnectedAtomsCount(atom);
-                if (neighbors == 1) {
-                    IAtomType type = getAtomType("Co.2plus.1");
-                    if (isAcceptable(atom, atomContainer, type)) {
-                        return type;// Fix10 //
-                    }
-                } else if (neighbors == 0) {
+                if (neighbors <= 1) {
                     IAtomType type = getAtomType("Co.2plus");
                     if (isAcceptable(atom, atomContainer, type)) {
                         return type;// Fix10 //
+                    }
+                } 
+            } else if ((atom.getFormalCharge() != null
+                    && atom.getFormalCharge() == +3)) {
+                int neighbors = atomContainer.getConnectedAtomsCount(atom);
+                if (neighbors == 0) {
+                    IAtomType type = getAtomType("Co.3plus");
+                    if (isAcceptable(atom, atomContainer, type)) {
+                        return type;
                     }
                 }
             } else if ((atom.getFormalCharge() == CDKConstants.UNSET

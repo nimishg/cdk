@@ -422,7 +422,7 @@
     <at:hybridization rdf:resource="&at;sp3"/>
   </at:AtomType>
 
-  <at:AtomType rdf:ID="N.sp3.radical">
+    <at:AtomType rdf:ID="N.sp3.radical">
     <at:formalCharge>0</at:formalCharge>
     <at:hasElement rdf:resource="&elem;N"/>
     <at:formalNeighbourCount>2</at:formalNeighbourCount>
@@ -430,9 +430,9 @@
     <at:piBondCount>0</at:piBondCount>
     <at:singleElectronCount>1</at:singleElectronCount>
     <at:hybridization rdf:resource="&at;sp3"/>
-  </at:AtomType>
+    </at:AtomType>
 
-  <at:AtomType rdf:ID="N.sp2.radical">
+    <at:AtomType rdf:ID="N.sp2.radical">
     <at:formalCharge>0</at:formalCharge>
     <at:hasElement rdf:resource="&elem;N"/>
     <at:formalNeighbourCount>1</at:formalNeighbourCount>
@@ -440,45 +440,80 @@
     <at:piBondCount>1</at:piBondCount>
     <at:singleElectronCount>1</at:singleElectronCount>
     <at:hybridization rdf:resource="&at;sp2"/>
-  </at:AtomType>
+    </at:AtomType>
 
-  <at:AtomType rdf:ID="N.sp2">
+    <at:AtomType rdf:ID="N.sp2">
     <at:formalCharge>0</at:formalCharge>
     <at:hasElement rdf:resource="&elem;N"/>
     <at:formalNeighbourCount>2</at:formalNeighbourCount>
     <at:lonePairCount>1</at:lonePairCount>
     <at:piBondCount>1</at:piBondCount>
     <at:hybridization rdf:resource="&at;sp2"/>
-  </at:AtomType>
+    </at:AtomType>
 
-  <at:AtomType rdf:ID="N.sp2.3">
+    <at:AtomType rdf:ID="N.sp2.3">
     <at:formalCharge>0</at:formalCharge>
     <at:hasElement rdf:resource="&elem;N"/>
     <at:formalNeighbourCount>3</at:formalNeighbourCount>
     <at:lonePairCount>0</at:lonePairCount>
     <at:piBondCount>2</at:piBondCount>
     <at:hybridization rdf:resource="&at;sp2"/>
-  </at:AtomType>
+    </at:AtomType>  // changed
 
-  <at:AtomType rdf:ID="N.sp1.2">
+    <at:AtomType rdf:ID="N.minus">
+    <at:formalCharge>-1</at:formalCharge>
+    <at:hasElement rdf:resource="&elem;N"/>
+    <at:formalNeighbourCount>1</at:formalNeighbourCount>
+    <at:lonePairCount>2</at:lonePairCount>
+    <at:piBondCount>2</at:piBondCount>
+      </at:AtomType> // Fix49 //done in CDKAtomTypeMatcher //
+
+    <at:AtomType rdf:ID="N.sp1.2">
     <at:formalCharge>0</at:formalCharge>
     <at:hasElement rdf:resource="&elem;N"/>
     <at:formalNeighbourCount>2</at:formalNeighbourCount>
     <at:lonePairCount>0</at:lonePairCount>
     <at:piBondCount>3</at:piBondCount>
     <at:hybridization rdf:resource="&at;sp1"/>
-  </at:AtomType>
+    </at:AtomType>  // changed
 
-  <at:AtomType rdf:ID="N.planar3">
+    <at:AtomType rdf:ID="N.2minus.sp2">
+    <at:formalCharge>-2</at:formalCharge>
+    <at:hasElement rdf:resource="&elem;N"/>
+    <at:formalNeighbourCount>1</at:formalNeighbourCount>
+    <at:lonePairCount>2</at:lonePairCount>
+    <at:piBondCount>2</at:piBondCount>
+    <at:hybridization rdf:resource="&at;sp2"/>
+    </at:AtomType>//Fix 113//
+
+    <at:AtomType rdf:ID="N.plus.sp1">
+    <at:formalCharge>1</at:formalCharge>
+    <at:hasElement rdf:resource="&elem;N"/>
+    <at:formalNeighbourCount>2</at:formalNeighbourCount>
+    <at:lonePairCount>0</at:lonePairCount>
+    <at:piBondCount>2</at:piBondCount>
+    <at:hybridization rdf:resource="&at;sp1"/>
+    </at:AtomType> // changed
+
+    <at:AtomType rdf:ID="N.2minus.planar">
+    <at:formalCharge>-2</at:formalCharge>
+    <at:hasElement rdf:resource="&elem;N"/>
+    <at:formalNeighbourCount>1</at:formalNeighbourCount>
+    <at:lonePairCount>2</at:lonePairCount>
+    <at:piBondCount>2</at:piBondCount>
+    <at:hybridization rdf:resource="&at;planar"/>
+    </at:AtomType> // Fix43 //done in CDKAtomTypeMatcher //
+
+     <at:AtomType rdf:ID="N.planar3">
     <at:formalCharge>0</at:formalCharge>
     <at:hasElement rdf:resource="&elem;N"/>
     <at:formalNeighbourCount>3</at:formalNeighbourCount>
     <at:lonePairCount>1</at:lonePairCount>
     <at:piBondCount>0</at:piBondCount>
     <at:hybridization rdf:resource="&at;planar"/>
-  </at:AtomType>
+    </at:AtomType>
 
-  <at:AtomType rdf:ID="N.amide">
+    <at:AtomType rdf:ID="N.amide">
     <at:broader rdf:resource="&cdkat;N.sp2"/>
     <at:formalCharge>0</at:formalCharge>
     <at:hasElement rdf:resource="&elem;N"/>
@@ -486,18 +521,18 @@
     <at:lonePairCount>1</at:lonePairCount>
     <at:piBondCount>0</at:piBondCount>
     <at:hybridization rdf:resource="&at;sp2"/>
-  </at:AtomType>
+    </at:AtomType>
 
-  <at:AtomType rdf:ID="N.oxide">
+    <at:AtomType rdf:ID="N.oxide">
     <at:formalCharge>0</at:formalCharge>
     <at:hasElement rdf:resource="&elem;N"/>
     <at:formalNeighbourCount>4</at:formalNeighbourCount>
     <at:lonePairCount>0</at:lonePairCount>
     <at:piBondCount>1</at:piBondCount>
     <at:hybridization rdf:resource="&at;sp2"/>
-  </at:AtomType>
+    </at:AtomType>
 
-  <at:AtomType rdf:ID="N.thioamide">
+    <at:AtomType rdf:ID="N.thioamide">
     <at:broader rdf:resource="&cdkat;N.sp2"/>
     <at:formalCharge>0</at:formalCharge>
     <at:hasElement rdf:resource="&elem;N"/>
@@ -505,36 +540,36 @@
     <at:lonePairCount>1</at:lonePairCount>
     <at:piBondCount>0</at:piBondCount>
     <at:hybridization rdf:resource="&at;sp2"/>
-  </at:AtomType>
+    </at:AtomType>
 
-  <at:AtomType rdf:ID="N.sp1">
+    <at:AtomType rdf:ID="N.sp1">
     <at:formalCharge>0</at:formalCharge>
     <at:hasElement rdf:resource="&elem;N"/>
     <at:formalNeighbourCount>1</at:formalNeighbourCount>
     <at:lonePairCount>1</at:lonePairCount>
     <at:piBondCount>2</at:piBondCount>
     <at:hybridization rdf:resource="&at;sp1"/>
-  </at:AtomType>
+    </at:AtomType>
 
-  <at:AtomType rdf:ID="N.plus">
+    <at:AtomType rdf:ID="N.plus">
     <at:formalCharge>1</at:formalCharge>
     <at:hasElement rdf:resource="&elem;N"/>
     <at:formalNeighbourCount>4</at:formalNeighbourCount>
     <at:lonePairCount>0</at:lonePairCount>
     <at:piBondCount>0</at:piBondCount>
     <at:hybridization rdf:resource="&at;sp3"/>
-  </at:AtomType>
+    </at:AtomType>
 
-  <at:AtomType rdf:ID="N.plus.sp2">
+    <at:AtomType rdf:ID="N.plus.sp2">
     <at:formalCharge>1</at:formalCharge>
     <at:hasElement rdf:resource="&elem;N"/>
     <at:formalNeighbourCount>3</at:formalNeighbourCount>
     <at:lonePairCount>0</at:lonePairCount>
     <at:piBondCount>1</at:piBondCount>
     <at:hybridization rdf:resource="&at;sp2"/>
-  </at:AtomType>
+    </at:AtomType>
 
-  <at:AtomType rdf:ID="N.plus.sp2.radical">
+    <at:AtomType rdf:ID="N.plus.sp2.radical">
     <at:formalCharge>1</at:formalCharge>
     <at:hasElement rdf:resource="&elem;N"/>
     <at:formalNeighbourCount>2</at:formalNeighbourCount>
@@ -542,9 +577,9 @@
     <at:piBondCount>1</at:piBondCount>
     <at:singleElectronCount>1</at:singleElectronCount>
     <at:hybridization rdf:resource="&at;sp2"/>
-  </at:AtomType>
+    </at:AtomType>
 
-  <at:AtomType rdf:ID="N.plus.sp3.radical">
+    <at:AtomType rdf:ID="N.plus.sp3.radical">
     <at:formalCharge>1</at:formalCharge>
     <at:hasElement rdf:resource="&elem;N"/>
     <at:formalNeighbourCount>3</at:formalNeighbourCount>
@@ -552,25 +587,16 @@
     <at:piBondCount>0</at:piBondCount>
     <at:singleElectronCount>1</at:singleElectronCount>
     <at:hybridization rdf:resource="&at;sp3"/>
-  </at:AtomType>
+    </at:AtomType>
 
-  <at:AtomType rdf:ID="N.plus.sp1">
-    <at:formalCharge>1</at:formalCharge>
-    <at:hasElement rdf:resource="&elem;N"/>
-    <at:formalNeighbourCount>2</at:formalNeighbourCount>
-    <at:lonePairCount>0</at:lonePairCount>
-    <at:piBondCount>2</at:piBondCount>
-    <at:hybridization rdf:resource="&at;sp1"/>
-  </at:AtomType>
-
-  <at:AtomType rdf:ID="N.minus.sp3">
+    <at:AtomType rdf:ID="N.minus.sp3">
     <at:formalCharge>-1</at:formalCharge>
     <at:hasElement rdf:resource="&elem;N"/>
     <at:formalNeighbourCount>2</at:formalNeighbourCount>
     <at:lonePairCount>2</at:lonePairCount>
     <at:piBondCount>0</at:piBondCount>
     <at:hybridization rdf:resource="&at;sp3"/>
-  </at:AtomType>
+    </at:AtomType>
 
   <at:AtomType rdf:ID="N.minus.sp2">
     <at:formalCharge>-1</at:formalCharge>
@@ -579,7 +605,7 @@
     <at:lonePairCount>2</at:lonePairCount>
     <at:piBondCount>1</at:piBondCount>
     <at:hybridization rdf:resource="&at;sp2"/>
-  </at:AtomType>
+    </at:AtomType>
 
   <at:AtomType rdf:ID="N.minus.planar3">
     <at:formalCharge>-1</at:formalCharge>
@@ -588,51 +614,42 @@
     <at:lonePairCount>2</at:lonePairCount>
     <at:piBondCount>0</at:piBondCount>
     <at:hybridization rdf:resource="&at;planar"/>
-  </at:AtomType>
+    </at:AtomType>
 
-  <at:AtomType rdf:ID="N.nitro">
+    <at:AtomType rdf:ID="N.nitro">
     <at:hasElement rdf:resource="&elem;N"/>
     <at:formalNeighbourCount>3</at:formalNeighbourCount>
     <at:lonePairCount>0</at:lonePairCount>
     <at:piBondCount>2</at:piBondCount>
     <at:hybridization rdf:resource="&at;planar"/>
-  </at:AtomType>
+    </at:AtomType>
 
-  <at:AtomType rdf:ID="N.2minus.sp2">
-   <at:formalCharge>-2</at:formalCharge>
-   <at:hasElement rdf:resource="&elem;N"/>
-   <at:formalNeighbourCount>1</at:formalNeighbourCount>
-   <at:lonePairCount>2</at:lonePairCount>
-   <at:piBondCount>2</at:piBondCount>
-   <at:hybridization rdf:resource="&at;sp2"/>
-  </at:AtomType>//Fix 113//
-
-  <at:AtomType rdf:ID="S.sp2.1">
+    <at:AtomType rdf:ID="S.sp2.1">
     <at:formalCharge>0</at:formalCharge>
     <at:hasElement rdf:resource="&elem;S"/>
     <at:formalNeighbourCount>1</at:formalNeighbourCount>
     <at:lonePairCount>2</at:lonePairCount>
     <at:piBondCount>1</at:piBondCount>
     <at:hybridization rdf:resource="&at;sp2"/>
-  </at:AtomType> // changes made here //
+    </at:AtomType> // changed
 
-  <at:AtomType rdf:ID="S.sp2.2">
+    <at:AtomType rdf:ID="S.sp2.2">
     <at:formalCharge>0</at:formalCharge>
     <at:hasElement rdf:resource="&elem;S"/>
     <at:formalNeighbourCount>2</at:formalNeighbourCount>
     <at:lonePairCount>1</at:lonePairCount>
     <at:piBondCount>2</at:piBondCount>
     <at:hybridization rdf:resource="&at;sp2"/>
-  </at:AtomType>//fix102/52
+    </at:AtomType>//fix102/52
 
-  <at:AtomType rdf:ID="S.sp3">
+    <at:AtomType rdf:ID="S.sp3">
     <at:formalCharge>0</at:formalCharge>
     <at:hasElement rdf:resource="&elem;S"/>
     <at:formalNeighbourCount>2</at:formalNeighbourCount>
     <at:lonePairCount>2</at:lonePairCount>
     <at:piBondCount>0</at:piBondCount>
     <at:hybridization rdf:resource="&at;sp3"/>
-  </at:AtomType>
+    </at:AtomType>
 
    <at:AtomType rdf:ID="S.sp3.4">
     <at:formalCharge>0</at:formalCharge>
@@ -768,24 +785,39 @@
     <at:hybridization rdf:resource="&at;sp3d2"/>
   </at:AtomType>
 
-  <at:AtomType rdf:ID="S.anyl">
+    <at:AtomType rdf:ID="S.anyl">
     <at:formalCharge>0</at:formalCharge>
     <at:hasElement rdf:resource="&elem;S"/>
     <at:formalNeighbourCount>4</at:formalNeighbourCount>
     <at:lonePairCount>1</at:lonePairCount>
     <at:piBondCount>0</at:piBondCount>
     <at:hybridization rdf:resource="&at;sp3d2"/>
-  </at:AtomType>
+    </at:AtomType>
 
-  <at:AtomType rdf:ID="Li">
+    <at:AtomType rdf:ID="Li">
     <at:formalCharge>0</at:formalCharge>
     <at:hasElement rdf:resource="&elem;Li"/>
     <at:formalNeighbourCount>1</at:formalNeighbourCount>
     <at:lonePairCount>0</at:lonePairCount>
     <at:piBondCount>0</at:piBondCount>
     <at:hybridization rdf:resource="&at;s"/>
-  </at:AtomType>
+    </at:AtomType>
 
+    <at:AtomType rdf:ID="Li.neutral">
+    <at:formalCharge>0</at:formalCharge>
+    <at:hasElement rdf:resource="&elem;Li"/>
+    <at:formalNeighbourCount>0</at:formalNeighbourCount>
+    <at:piBondCount>0</at:piBondCount>
+    </at:AtomType> // Fix71 //done in CDKAtomTypeMatcher //
+
+   <at:AtomType rdf:ID="Li.plus">
+    <at:formalCharge>1</at:formalCharge>
+    <at:hasElement rdf:resource="&elem;Li"/>
+    <at:formalNeighbourCount>0</at:formalNeighbourCount>
+    <at:lonePairCount>0</at:lonePairCount>
+    <at:piBondCount>0</at:piBondCount>
+    </at:AtomType> // Fix86 // done in CDKAtomTypeMatcher //
+ 
   <at:AtomType rdf:ID="H">
     <at:formalCharge>0</at:formalCharge>
     <at:hasElement rdf:resource="&elem;H"/>
@@ -879,23 +911,32 @@
     <at:hybridization rdf:resource="&at;sp3"/>
   </at:AtomType>
 
-  <at:AtomType rdf:ID="Cl">
+    <at:AtomType rdf:ID="F.minus.1">
+    <at:formalCharge>-1</at:formalCharge>
+    <at:hasElement rdf:resource="&elem;F"/>
+    <at:formalNeighbourCount>1</at:formalNeighbourCount>
+    <at:lonePairCount>3</at:lonePairCount>
+    <at:piBondCount>0</at:piBondCount>
+    <at:hybridization rdf:resource="&at;sp3"/>
+    </at:AtomType> // Fix81 // done in CDKAtomTypeMatcher //
+
+    <at:AtomType rdf:ID="Cl">
     <at:formalCharge>0</at:formalCharge>
     <at:hasElement rdf:resource="&elem;Cl"/>
     <at:formalNeighbourCount>1</at:formalNeighbourCount>
     <at:lonePairCount>3</at:lonePairCount>
     <at:piBondCount>0</at:piBondCount>
     <at:hybridization rdf:resource="&at;sp3"/>
-  </at:AtomType>
+   </at:AtomType>
 
-  <at:AtomType rdf:ID="Cl.plus.sp3">
+   <at:AtomType rdf:ID="Cl.plus.sp3">
     <at:formalCharge>1</at:formalCharge>
     <at:hasElement rdf:resource="&elem;Cl"/>
     <at:formalNeighbourCount>2</at:formalNeighbourCount>
     <at:lonePairCount>2</at:lonePairCount>
     <at:piBondCount>0</at:piBondCount>
     <at:hybridization rdf:resource="&at;sp3"/>
-  </at:AtomType>
+   </at:AtomType>
 
   <at:AtomType rdf:ID="Cl.plus.sp2">
     <at:formalCharge>1</at:formalCharge>
@@ -996,7 +1037,7 @@
     <at:lonePairCount>2</at:lonePairCount>
     <at:piBondCount>0</at:piBondCount>
     <at:hybridization rdf:resource="&at;sp3d2"/>
-  </at:AtomType>
+  </at:AtomType> // changed
 
   <at:AtomType rdf:ID="I.minus.2">
     <at:formalCharge>-1</at:formalCharge>
@@ -1050,7 +1091,7 @@
     <at:lonePairCount>2</at:lonePairCount>
     <at:piBondCount>0</at:piBondCount>
     <at:hybridization rdf:resource="&at;sp3"/>
-  </at:AtomType>
+  </at:AtomType> //changed
 
   <at:AtomType rdf:ID="I.radical">
     <at:formalCharge>0</at:formalCharge>
@@ -1219,7 +1260,6 @@
     <at:hybridization rdf:resource="&at;s"/>
   </at:AtomType>
 
-
   <at:AtomType rdf:ID="Na.minus">
     <at:formalCharge>-1</at:formalCharge>
     <at:hasElement rdf:resource="&elem;Na"/>
@@ -1236,6 +1276,15 @@
     <at:piBondCount>0</at:piBondCount>
     <at:hybridization rdf:resource="&at;s"/>
   </at:AtomType>
+
+    <at:AtomType rdf:ID="Na.neutral">
+    <at:formalCharge>0</at:formalCharge>
+    <at:hasElement rdf:resource="&elem;Na"/>
+    <at:formalNeighbourCount>0</at:formalNeighbourCount>
+    <at:lonePairCount>0</at:lonePairCount>
+    <at:piBondCount>0</at:piBondCount>
+    </at:AtomType> // Fix63 // done in CDKAtomTypeMatcher //
+
 
   <at:AtomType rdf:ID="K.plus">
     <at:formalCharge>1</at:formalCharge>
@@ -1258,34 +1307,6 @@
     <at:piBondCount>0</at:piBondCount>
   </at:AtomType>
 
-  <at:AtomType rdf:ID="Ca.2plus">
-    <at:formalCharge>2</at:formalCharge>
-    <at:hasElement rdf:resource="&elem;Ca"/>
-    <at:formalNeighbourCount>0</at:formalNeighbourCount>
-    <at:piBondCount>0</at:piBondCount>
-    </at:AtomType>
-
-  <at:AtomType rdf:ID="Ca.1">
-    <at:formalCharge>0</at:formalCharge>
-    <at:hasElement rdf:resource="&elem;Ca"/>
-    <at:formalNeighbourCount>1</at:formalNeighbourCount>
-    <at:piBondCount>1</at:piBondCount>
-    </at:AtomType>//Fix 104
-
-  <at:AtomType rdf:ID="Mg.Neutral">
-    <at:formalCharge>0</at:formalCharge>
-    <at:hasElement rdf:resource="&elem;Mg"/>
-    <at:formalNeighbourCount>4</at:formalNeighbourCount>
-    </at:AtomType>
-
-
-  <at:AtomType rdf:ID="Mg.2plus">
-    <at:formalCharge>2</at:formalCharge>
-    <at:hasElement rdf:resource="&elem;Mg"/>
-    <at:formalNeighbourCount>0</at:formalNeighbourCount>
-    <at:piBondCount>0</at:piBondCount>
-    </at:AtomType>
-
   <at:AtomType rdf:ID="Ni.2plus">
     <at:formalCharge>2</at:formalCharge>
     <at:hasElement rdf:resource="&elem;Ni"/>
@@ -1306,8 +1327,7 @@
     <at:formalNeighbourCount>0</at:formalNeighbourCount>
     <at:piBondCount>0</at:piBondCount>
     </at:AtomType>
-
-  
+ 
   <at:AtomType rdf:ID="Ni.plus">
     <at:formalCharge>1</at:formalCharge>
     <at:hasElement rdf:resource="&elem;Ni"/>
@@ -1336,12 +1356,12 @@
     <at:piBondCount>0</at:piBondCount>
     </at:AtomType>
 
-  <at:AtomType rdf:ID="Fe.2plus">
-    <at:formalCharge>2</at:formalCharge>
-    <at:hasElement rdf:resource="&elem;Fe"/>
-    <at:formalNeighbourCount>0</at:formalNeighbourCount>
+    <at:AtomType rdf:ID="Al.3minus">
+    <at:formalCharge>-3</at:formalCharge>
+    <at:hasElement rdf:resource="&elem;Al"/>
+    <at:formalNeighbourCount>6</at:formalNeighbourCount>
     <at:piBondCount>0</at:piBondCount>
-    </at:AtomType>
+    </at:AtomType> // Fix62 // done in CDKAtomTypeMatcher //
 
     <at:AtomType rdf:ID="Th">
     <at:formalCharge>0</at:formalCharge>
@@ -1396,20 +1416,6 @@
     <at:piBondCount>0</at:piBondCount>
     </at:AtomType>   //  Fix1 // done in CDKAtomTypeMatcher //
 
-    <at:AtomType rdf:ID="Cu.metallic">
-    <at:formalCharge>0</at:formalCharge>
-    <at:hasElement rdf:resource="&elem;Cu"/>
-    <at:formalNeighbourCount>0</at:formalNeighbourCount>
-    <at:piBondCount>0</at:piBondCount>
-    </at:AtomType>    // Fix3 // done in CDKAtomTypeMatcher //
-
-    <at:AtomType rdf:ID="Cu.1">
-    <at:formalCharge>0</at:formalCharge>
-    <at:hasElement rdf:resource="&elem;Cu"/>
-    <at:formalNeighbourCount>1</at:formalNeighbourCount>
-    <at:piBondCount>0</at:piBondCount>
-    </at:AtomType>    // Fix105 // done in CDKAtomTypeMatcher //
-
     <at:AtomType rdf:ID="Fe.4">
     <at:formalCharge>0</at:formalCharge>
     <at:hasElement rdf:resource="&elem;Fe"/>
@@ -1424,6 +1430,69 @@
     <at:piBondCount>0</at:piBondCount>
     </at:AtomType>  // Fix6 // done in CDKAtomTypeMatcher //
 
+    <at:AtomType rdf:ID="Fe.3minus">
+    <at:formalCharge>-3</at:formalCharge>
+    <at:hasElement rdf:resource="&elem;Fe"/>
+    <at:formalNeighbourCount>6</at:formalNeighbourCount>
+    <at:piBondCount>0</at:piBondCount>
+    </at:AtomType>  // Fix21 // done in CDKAtomTypeMatcher //
+
+    <at:AtomType rdf:ID="Fe.2plus">
+    <at:formalCharge>2</at:formalCharge>
+    <at:hasElement rdf:resource="&elem;Fe"/>
+    <at:formalNeighbourCount>0</at:formalNeighbourCount>
+    <at:piBondCount>0</at:piBondCount>
+    </at:AtomType>  // Fix25 // done in CDKAtomTypeMatcher //
+
+    <at:AtomType rdf:ID="Fe.4minus">
+    <at:formalCharge>-4</at:formalCharge>
+    <at:hasElement rdf:resource="&elem;Fe"/>
+    <at:formalNeighbourCount>6</at:formalNeighbourCount>
+    <at:piBondCount>0</at:piBondCount>
+    </at:AtomType>  // Fix26 // done in CDKAtomTypeMatcher //
+
+    <at:AtomType rdf:ID="Fe.5">
+    <at:formalCharge>0</at:formalCharge>
+    <at:hasElement rdf:resource="&elem;Fe"/>
+    <at:formalNeighbourCount>5</at:formalNeighbourCount>
+    <at:piBondCount>0</at:piBondCount>
+    </at:AtomType>  // Fix27 // done in CDKAtomTypeMatcher //
+
+    <at:AtomType rdf:ID="Fe.6">
+    <at:formalCharge>0</at:formalCharge>
+    <at:hasElement rdf:resource="&elem;Fe"/>
+    <at:formalNeighbourCount>6</at:formalNeighbourCount>
+    <at:piBondCount>0</at:piBondCount>
+    </at:AtomType>  // Fix28 // done in CDKAtomTypeMatcher //
+
+    <at:AtomType rdf:ID="Fe.2minus">
+    <at:formalCharge>-2</at:formalCharge>
+    <at:hasElement rdf:resource="&elem;Fe"/>
+    <at:formalNeighbourCount>6</at:formalNeighbourCount>
+    <at:piBondCount>0</at:piBondCount>
+    </at:AtomType>  // Fix29 // done in CDKAtomTypeMatcher //
+
+    <at:AtomType rdf:ID="Fe.3plus">
+    <at:formalCharge>3</at:formalCharge>
+    <at:hasElement rdf:resource="&elem;Fe"/>
+    <at:formalNeighbourCount>0</at:formalNeighbourCount>
+    <at:piBondCount>0</at:piBondCount>
+    </at:AtomType>  // Fix30 // done in CDKAtomTypeMatcher //
+
+    <at:AtomType rdf:ID="Fe.3">
+    <at:formalCharge>0</at:formalCharge>
+    <at:hasElement rdf:resource="&elem;Fe"/>
+    <at:formalNeighbourCount>3</at:formalNeighbourCount>
+    <at:piBondCount>0</at:piBondCount>
+    </at:AtomType>  // Fix31 // done in CDKAtomTypeMatcher //
+
+    <at:AtomType rdf:ID="Fe.2">
+    <at:formalCharge>0</at:formalCharge>
+    <at:hasElement rdf:resource="&elem;Fe"/>
+    <at:formalNeighbourCount>2</at:formalNeighbourCount>
+    <at:piBondCount>0</at:piBondCount>
+    </at:AtomType>  // Fix32 // done in CDKAtomTypeMatcher //
+
     <at:AtomType rdf:ID="Mo.metallic">
     <at:formalCharge>0</at:formalCharge>
     <at:hasElement rdf:resource="&elem;Mo"/>
@@ -1431,177 +1500,126 @@
     <at:piBondCount>0</at:piBondCount>
     </at:AtomType>  // Fix7 //done in CDKAtomTypeMatcher //
 
-<at:AtomType rdf:ID="Mo.4">
+   <at:AtomType rdf:ID="Mo.4">
     <at:formalCharge>0</at:formalCharge>
     <at:hasElement rdf:resource="&elem;Mo"/>
     <at:formalNeighbourCount>4</at:formalNeighbourCount>
     <at:piBondCount>2</at:piBondCount>
     </at:AtomType>  // Fix8 //done in CDKAtomTypeMatcher //
 
-<at:AtomType rdf:ID="Co.plus.6">
+    <at:AtomType rdf:ID="Co.3plus">
+    <at:formalCharge>3</at:formalCharge>
+    <at:hasElement rdf:resource="&elem;Co"/>
+    <at:formalNeighbourCount>0</at:formalNeighbourCount>
+    <at:piBondCount>0</at:piBondCount>
+   </at:AtomType> 
+
+   <at:AtomType rdf:ID="Co.metallic">
+    <at:formalCharge>0</at:formalCharge>
+    <at:hasElement rdf:resource="&elem;Co"/>
+    <at:formalNeighbourCount>0</at:formalNeighbourCount>
+    <at:piBondCount>0</at:piBondCount>
+   </at:AtomType>
+
+    <at:AtomType rdf:ID="Co.plus.6">
     <at:formalCharge>1</at:formalCharge>
     <at:hasElement rdf:resource="&elem;Co"/>
     <at:formalNeighbourCount>6</at:formalNeighbourCount>
     <at:piBondCount>0</at:piBondCount>
     </at:AtomType>  // Fix9 //done in CDKAtomTypeMatcher //
 
-<at:AtomType rdf:ID="Co.2plus.1">
+    <at:AtomType rdf:ID="Co.2plus">
     <at:formalCharge>2</at:formalCharge>
     <at:hasElement rdf:resource="&elem;Co"/>
     <at:formalNeighbourCount>1</at:formalNeighbourCount>
     <at:piBondCount>0</at:piBondCount>
     </at:AtomType>   // Fix10 //done in CDKAtomTypeMatcher //
 
-<at:AtomType rdf:ID="Co.2plus">
-    <at:formalCharge>2</at:formalCharge>
-    <at:hasElement rdf:resource="&elem;Co"/>
-    <at:formalNeighbourCount>0</at:formalNeighbourCount>
-    <at:piBondCount>0</at:piBondCount>
-    </at:AtomType>   // Fix10 //done in CDKAtomTypeMatcher //
-
-<at:AtomType rdf:ID="Co.plus.2">
+    <at:AtomType rdf:ID="Co.plus.2">
     <at:formalCharge>1</at:formalCharge>
     <at:hasElement rdf:resource="&elem;Co"/>
     <at:formalNeighbourCount>2</at:formalNeighbourCount>
     <at:piBondCount>0</at:piBondCount>
     </at:AtomType> // Fix11 //done in CDKAtomTypeMatcher //
 
-<at:AtomType rdf:ID="Co.2">
+    <at:AtomType rdf:ID="Co.2">
     <at:formalCharge>0</at:formalCharge>
     <at:hasElement rdf:resource="&elem;Co"/>
     <at:formalNeighbourCount>2</at:formalNeighbourCount>
     <at:piBondCount>0</at:piBondCount>
     </at:AtomType>   // Fix12 // Fix13- done already //done in CDKAtomTypeMatcher //
 
-
-<at:AtomType rdf:ID="Co.6">
+    <at:AtomType rdf:ID="Co.6">
     <at:formalCharge>0</at:formalCharge>
     <at:hasElement rdf:resource="&elem;Co"/>
     <at:formalNeighbourCount>6</at:formalNeighbourCount>
     <at:piBondCount>0</at:piBondCount>
     </at:AtomType>  // Fix14 //done in CDKAtomTypeMatcher //
 
-<at:AtomType rdf:ID="Co.plus.4">
+    <at:AtomType rdf:ID="Co.plus.4">
     <at:formalCharge>1</at:formalCharge>
     <at:hasElement rdf:resource="&elem;Co"/>
     <at:formalNeighbourCount>4</at:formalNeighbourCount>
     <at:piBondCount>0</at:piBondCount>
     </at:AtomType>  // Fix15 //done in CDKAtomTypeMatcher //
 
-<at:AtomType rdf:ID="Co.4">
+     <at:AtomType rdf:ID="Co.4">
     <at:formalCharge>0</at:formalCharge>
     <at:hasElement rdf:resource="&elem;Co"/>
     <at:formalNeighbourCount>4</at:formalNeighbourCount>
     <at:piBondCount>0</at:piBondCount>
     </at:AtomType>  // Fix16 //done in CDKAtomTypeMatcher //
 
-<at:AtomType rdf:ID="Co.plus.5">
+    <at:AtomType rdf:ID="Co.plus.5">
     <at:formalCharge>1</at:formalCharge>
     <at:hasElement rdf:resource="&elem;Co"/>
     <at:formalNeighbourCount>5</at:formalNeighbourCount>
     <at:piBondCount>0</at:piBondCount>
     </at:AtomType>  // Fix17 //done in CDKAtomTypeMatcher //
 
-<at:AtomType rdf:ID="Co.plus.1">
+    <at:AtomType rdf:ID="Co.plus.1">
     <at:formalCharge>1</at:formalCharge>
     <at:hasElement rdf:resource="&elem;Co"/>
     <at:formalNeighbourCount>1</at:formalNeighbourCount>
     <at:piBondCount>0</at:piBondCount>
     </at:AtomType>  // Fix18 //done in CDKAtomTypeMatcher //
 
-<at:AtomType rdf:ID="Co.1">
+    <at:AtomType rdf:ID="Co.1">
     <at:formalCharge>0</at:formalCharge>
     <at:hasElement rdf:resource="&elem;Co"/>
     <at:formalNeighbourCount>1</at:formalNeighbourCount>
     <at:piBondCount>0</at:piBondCount>
     </at:AtomType>  // Fix19 // Fix20- done already //done in CDKAtomTypeMatcher // 
 
-
-<at:AtomType rdf:ID="Fe.3minus">
-    <at:formalCharge>-3</at:formalCharge>
-    <at:hasElement rdf:resource="&elem;Fe"/>
-    <at:formalNeighbourCount>6</at:formalNeighbourCount>
-    <at:piBondCount>0</at:piBondCount>
-    </at:AtomType>  // Fix21 // done in CDKAtomTypeMatcher //
-
-<at:AtomType rdf:ID="Zn.1">
-    <at:formalCharge>0</at:formalCharge>
-    <at:hasElement rdf:resource="&elem;Zn"/>
-    <at:formalNeighbourCount>1</at:formalNeighbourCount>
-    <at:piBondCount>1</at:piBondCount>
-    </at:AtomType>  // Fix22 //done in CDKAtomTypeMatcher //pibond left//
-
-<at:AtomType rdf:ID="Cu.plus">
+    <at:AtomType rdf:ID="Cu.plus">
     <at:formalCharge>1</at:formalCharge>
     <at:hasElement rdf:resource="&elem;Cu"/>
     <at:formalNeighbourCount>0</at:formalNeighbourCount>
     <at:piBondCount>0</at:piBondCount>
     </at:AtomType>  // Fix23 //done in CDKAtomTypeMatcher //
 
-<at:AtomType rdf:ID="Fe.2plus.">
+    <at:AtomType rdf:ID="Cu.2plus">
     <at:formalCharge>2</at:formalCharge>
-    <at:hasElement rdf:resource="&elem;Fe"/>
+    <at:hasElement rdf:resource="&elem;Cu"/>
+    <at:formalNeighbourCount>0</at:formalNeighbourCount>
+    <at:piBondCount>0</at:piBondCount>
+    </at:AtomType>
+
+    <at:AtomType rdf:ID="Cu.metallic">
+    <at:formalCharge>0</at:formalCharge>
+    <at:hasElement rdf:resource="&elem;Cu"/>
+    <at:formalNeighbourCount>0</at:formalNeighbourCount>
+    <at:piBondCount>0</at:piBondCount>
+    </at:AtomType>    // Fix3 // done in CDKAtomTypeMatcher //
+
+    <at:AtomType rdf:ID="Cu.1">
+    <at:formalCharge>0</at:formalCharge>
+    <at:hasElement rdf:resource="&elem;Cu"/>
     <at:formalNeighbourCount>1</at:formalNeighbourCount>
     <at:piBondCount>0</at:piBondCount>
-    </at:AtomType>  // Fix24 // done in CDKAtomTypeMatcher //
+    </at:AtomType>    // Fix105 // done in CDKAtomTypeMatcher //
 
-<at:AtomType rdf:ID="Fe.2plus">
-    <at:formalCharge>2</at:formalCharge>
-    <at:hasElement rdf:resource="&elem;Fe"/>
-    <at:formalNeighbourCount>0</at:formalNeighbourCount>
-    <at:piBondCount>0</at:piBondCount>
-    </at:AtomType>  // Fix25 // done in CDKAtomTypeMatcher //
-
-<at:AtomType rdf:ID="Fe.4minus">
-    <at:formalCharge>-4</at:formalCharge>
-    <at:hasElement rdf:resource="&elem;Fe"/>
-    <at:formalNeighbourCount>6</at:formalNeighbourCount>
-    <at:piBondCount>0</at:piBondCount>
-    </at:AtomType>  // Fix26 // done in CDKAtomTypeMatcher //
-
-<at:AtomType rdf:ID="Fe.5">
-    <at:formalCharge>0</at:formalCharge>
-    <at:hasElement rdf:resource="&elem;Fe"/>
-    <at:formalNeighbourCount>5</at:formalNeighbourCount>
-    <at:piBondCount>0</at:piBondCount>
-    </at:AtomType>  // Fix27 // done in CDKAtomTypeMatcher //
-
-<at:AtomType rdf:ID="Fe.6">
-    <at:formalCharge>0</at:formalCharge>
-    <at:hasElement rdf:resource="&elem;Fe"/>
-    <at:formalNeighbourCount>6</at:formalNeighbourCount>
-    <at:piBondCount>0</at:piBondCount>
-    </at:AtomType>  // Fix28 // done in CDKAtomTypeMatcher //
-
-<at:AtomType rdf:ID="Fe.2minus">
-    <at:formalCharge>-2</at:formalCharge>
-    <at:hasElement rdf:resource="&elem;Fe"/>
-    <at:formalNeighbourCount>6</at:formalNeighbourCount>
-    <at:piBondCount>0</at:piBondCount>
-    </at:AtomType>  // Fix29 // done in CDKAtomTypeMatcher //
-
-<at:AtomType rdf:ID="Fe.3plus">
-    <at:formalCharge>3</at:formalCharge>
-    <at:hasElement rdf:resource="&elem;Fe"/>
-    <at:formalNeighbourCount>0</at:formalNeighbourCount>
-    <at:piBondCount>0</at:piBondCount>
-    </at:AtomType>  // Fix30 // done in CDKAtomTypeMatcher //
-
-<at:AtomType rdf:ID="Fe.3">
-    <at:formalCharge>0</at:formalCharge>
-    <at:hasElement rdf:resource="&elem;Fe"/>
-    <at:formalNeighbourCount>3</at:formalNeighbourCount>
-    <at:piBondCount>0</at:piBondCount>
-    </at:AtomType>  // Fix31 // done in CDKAtomTypeMatcher //
-
-<at:AtomType rdf:ID="Fe.2">
-    <at:formalCharge>0</at:formalCharge>
-    <at:hasElement rdf:resource="&elem;Fe"/>
-    <at:formalNeighbourCount>2</at:formalNeighbourCount>
-    <at:piBondCount>0</at:piBondCount>
-    </at:AtomType>  // Fix32 // done in CDKAtomTypeMatcher //
-
-<at:AtomType rdf:ID="Cd.metallic">
+    <at:AtomType rdf:ID="Cd.metallic">
     <at:formalCharge>0</at:formalCharge>
     <at:hasElement rdf:resource="&elem;Cd"/>
     <at:formalNeighbourCount>0</at:formalNeighbourCount>
@@ -1623,21 +1641,21 @@
     <at:hybridization rdf:resource="&at;sp1"/>
     </at:AtomType>  // Fix115 // done in CDKAtomTypeMatcher //
 
-<at:AtomType rdf:ID="Hg.2plus">
+    <at:AtomType rdf:ID="Hg.2plus">
     <at:formalCharge>2</at:formalCharge>
     <at:hasElement rdf:resource="&elem;Hg"/>
     <at:formalNeighbourCount>0</at:formalNeighbourCount>
     <at:piBondCount>0</at:piBondCount>
     </at:AtomType>  // Fix35 // done in CDKAtomTypeMatcher //
 
-<at:AtomType rdf:ID="Hg.plus">
+    <at:AtomType rdf:ID="Hg.plus">
     <at:formalCharge>1</at:formalCharge>
     <at:hasElement rdf:resource="&elem;Hg"/>
     <at:formalNeighbourCount>1</at:formalNeighbourCount>
     <at:piBondCount>0</at:piBondCount>
     </at:AtomType>  // Fix36 // done in CDKAtomTypeMatcher //
 
-<at:AtomType rdf:ID="Hg.metallic">
+    <at:AtomType rdf:ID="Hg.metallic">
     <at:formalCharge>0</at:formalCharge>
     <at:hasElement rdf:resource="&elem;Hg"/>
     <at:formalNeighbourCount>0</at:formalNeighbourCount>
@@ -1658,56 +1676,12 @@
     <at:piBondCount>1</at:piBondCount>
     </at:AtomType>  // Fix92 //done in CDKAtomTypeMatcher //
 
-
-<at:AtomType rdf:ID="As.5">
-    <at:formalCharge>0</at:formalCharge>
-    <at:hasElement rdf:resource="&elem;As"/>
-    <at:formalNeighbourCount>4</at:formalNeighbourCount>
-    <at:lonePairCount>0</at:lonePairCount>
-    <at:piBondCount>1</at:piBondCount>
-    <at:hybridization rdf:resource="&at;sp3"/>
-  </at:AtomType> // Fix39 //done in CDKAtomTypeMatcher //
-
-
-<at:AtomType rdf:ID="As.2">
-    <at:formalCharge>0</at:formalCharge>
-    <at:hasElement rdf:resource="&elem;As"/>
-    <at:formalNeighbourCount>2</at:formalNeighbourCount>
-    <at:lonePairCount>1</at:lonePairCount>
-    <at:piBondCount>1</at:piBondCount>
-    <at:hybridization rdf:resource="&at;sp2"/>
-  </at:AtomType> // Fix40 //done in CDKAtomTypeMatcher //
-
-    <at:AtomType rdf:ID="As.3plus">
-    <at:formalCharge>3</at:formalCharge>
-    <at:hasElement rdf:resource="&elem;As"/>
-    <at:formalNeighbourCount>0</at:formalNeighbourCount>
-    <at:piBondCount>0</at:piBondCount>
-    </at:AtomType>  // Fix41 //done in CDKAtomTypeMatcher //
-
-    <at:AtomType rdf:ID="As.minus">
+    <at:AtomType rdf:ID="Hg.minus">
     <at:formalCharge>-1</at:formalCharge>
-    <at:hasElement rdf:resource="&elem;As"/>
-    <at:formalNeighbourCount>6</at:formalNeighbourCount>
+    <at:hasElement rdf:resource="&elem;Hg"/>
+    <at:formalNeighbourCount>2</at:formalNeighbourCount>
     <at:piBondCount>0</at:piBondCount>
-    </at:AtomType> // Fix42 //done in CDKAtomTypeMatcher //
-
-
-    <at:AtomType rdf:ID="N.2minus.planar">
-    <at:formalCharge>-2</at:formalCharge>
-    <at:hasElement rdf:resource="&elem;N"/>
-    <at:formalNeighbourCount>1</at:formalNeighbourCount>
-    <at:lonePairCount>2</at:lonePairCount>
-    <at:piBondCount>2</at:piBondCount>
-    <at:hybridization rdf:resource="&at;planar"/>
-    </at:AtomType> // Fix43 //done in CDKAtomTypeMatcher //
-
-    <at:AtomType rdf:ID="Zn.metallic">
-    <at:formalCharge>0</at:formalCharge>
-    <at:hasElement rdf:resource="&elem;Zn"/>
-    <at:formalNeighbourCount>0</at:formalNeighbourCount>
-    <at:piBondCount>0</at:piBondCount>
-    </at:AtomType>  // Fix44 //done in CDKAtomTypeMatcher //
+    </at:AtomType>
 
    <at:AtomType rdf:ID="Mg.4.neutral">
     <at:formalCharge>0</at:formalCharge>
@@ -1730,21 +1704,18 @@
     <at:piBondCount>1</at:piBondCount>
     </at:AtomType>  // Fix47 //done in CDKAtomTypeMatcher //
 
-  <at:AtomType rdf:ID="Mg.2plus.2">
+  <at:AtomType rdf:ID="Mg.Neutral">
+    <at:formalCharge>0</at:formalCharge>
+    <at:hasElement rdf:resource="&elem;Mg"/>
+    <at:formalNeighbourCount>4</at:formalNeighbourCount>
+    </at:AtomType>
+
+  <at:AtomType rdf:ID="Mg.2plus">
     <at:formalCharge>2</at:formalCharge>
     <at:hasElement rdf:resource="&elem;Mg"/>
-    <at:formalNeighbourCount>2</at:formalNeighbourCount>
+    <at:formalNeighbourCount>0</at:formalNeighbourCount>
     <at:piBondCount>0</at:piBondCount>
-    </at:AtomType>  // Fix48 //done in CDKAtomTypeMatcher 
-  //just in case if Mg is bonded covalently with O //
-
- <at:AtomType rdf:ID="N.minus">
-    <at:formalCharge>-1</at:formalCharge>
-    <at:hasElement rdf:resource="&elem;N"/>
-    <at:formalNeighbourCount>1</at:formalNeighbourCount>
-    <at:lonePairCount>2</at:lonePairCount>
-    <at:piBondCount>2</at:piBondCount>
-      </at:AtomType> // Fix49 //done in CDKAtomTypeMatcher //
+    </at:AtomType>
 
     <at:AtomType rdf:ID="Pb.neutral">
     <at:formalCharge>0</at:formalCharge>
@@ -1869,21 +1840,6 @@
     <at:hybridization rdf:resource="&at;sp3d1"/>
     </at:AtomType>
 
-    <at:AtomType rdf:ID="Al.3minus">
-    <at:formalCharge>-3</at:formalCharge>
-    <at:hasElement rdf:resource="&elem;Al"/>
-    <at:formalNeighbourCount>6</at:formalNeighbourCount>
-    <at:piBondCount>0</at:piBondCount>
-    </at:AtomType> // Fix62 // done in CDKAtomTypeMatcher //
-
-    <at:AtomType rdf:ID="Na.neutral">
-    <at:formalCharge>0</at:formalCharge>
-    <at:hasElement rdf:resource="&elem;Na"/>
-    <at:formalNeighbourCount>0</at:formalNeighbourCount>
-    <at:lonePairCount>0</at:lonePairCount>
-    <at:piBondCount>0</at:piBondCount>
-    </at:AtomType> // Fix63 // done in CDKAtomTypeMatcher //
-
   <at:AtomType rdf:ID="Si.2minus.6">
     <at:formalCharge>-2</at:formalCharge>
     <at:hasElement rdf:resource="&elem;Si"/>
@@ -1937,36 +1893,29 @@
     <at:piBondCount>0</at:piBondCount>
     </at:AtomType> // Fix67 // done in CDKAtomTypeMatcher //
 
-<at:AtomType rdf:ID="Be.neutral">
-    <at:formalCharge>0</at:formalCharge>
-    <at:hasElement rdf:resource="&elem;Be"/>
-    <at:formalNeighbourCount>0</at:formalNeighbourCount>
-    <at:piBondCount>0</at:piBondCount>
-    </at:AtomType> // Fix68 // done in CDKAtomTypeMatcher //
-
-<at:AtomType rdf:ID="Ra.neutral">
+   <at:AtomType rdf:ID="Ra.neutral">
     <at:formalCharge>0</at:formalCharge>
     <at:hasElement rdf:resource="&elem;Ra"/>
     <at:formalNeighbourCount>0</at:formalNeighbourCount>
     <at:piBondCount>0</at:piBondCount>
     </at:AtomType> // Fix70 // done in CDKAtomTypeMatcher //
 
-
-<at:AtomType rdf:ID="Li.neutral">
-    <at:formalCharge>0</at:formalCharge>
-    <at:hasElement rdf:resource="&elem;Li"/>
-    <at:formalNeighbourCount>0</at:formalNeighbourCount>
-    <at:piBondCount>0</at:piBondCount>
-    </at:AtomType> // Fix71 //done in CDKAtomTypeMatcher //
-
-<at:AtomType rdf:ID="Bi.neutral">
+   <at:AtomType rdf:ID="Bi.neutral">
     <at:formalCharge>0</at:formalCharge>
     <at:hasElement rdf:resource="&elem;Bi"/>
     <at:formalNeighbourCount>0</at:formalNeighbourCount>
     <at:piBondCount>0</at:piBondCount>
     </at:AtomType> // Fix72 // done in CDKAtomTypeMatcher //
 
-<at:AtomType rdf:ID="Sb.3">
+<at:AtomType rdf:ID="Bi.3">
+    <at:formalCharge>0</at:formalCharge>
+    <at:hasElement rdf:resource="&elem;Bi"/>
+    <at:formalNeighbourCount>3</at:formalNeighbourCount>
+    <at:lonePairCount>0</at:lonePairCount>
+    <at:piBondCount>0</at:piBondCount>
+      </at:AtomType> // Fix77 // done in CDKAtomTypeMatcher //
+
+   <at:AtomType rdf:ID="Sb.3">
     <at:formalCharge>0</at:formalCharge>
     <at:hasElement rdf:resource="&elem;Sb"/>
     <at:formalNeighbourCount>3</at:formalNeighbourCount>
@@ -2025,14 +1974,6 @@
     <at:piBondCount>0</at:piBondCount>
       </at:AtomType> // Fix76 // done in CDKAtomTypeMatcher //
 
-<at:AtomType rdf:ID="Bi.3">
-    <at:formalCharge>0</at:formalCharge>
-    <at:hasElement rdf:resource="&elem;Bi"/>
-    <at:formalNeighbourCount>3</at:formalNeighbourCount>
-    <at:lonePairCount>0</at:lonePairCount>
-    <at:piBondCount>0</at:piBondCount>
-      </at:AtomType> // Fix77 // done in CDKAtomTypeMatcher //
-
 <at:AtomType rdf:ID="Gd.3plus">
     <at:formalCharge>3</at:formalCharge>
     <at:hasElement rdf:resource="&elem;Gd"/>
@@ -2040,33 +1981,6 @@
     <at:lonePairCount>0</at:lonePairCount>
     <at:piBondCount>0</at:piBondCount>
       </at:AtomType> // Fix78 // done in CDKAtomTypeMatcher //
-
-<at:AtomType rdf:ID="Ge.3">
-    <at:formalCharge>0</at:formalCharge>
-    <at:hasElement rdf:resource="&elem;Ge"/>
-    <at:formalNeighbourCount>3</at:formalNeighbourCount>
-    <at:lonePairCount>0</at:lonePairCount>
-    <at:piBondCount>1</at:piBondCount>
-    <at:hybridization rdf:resource="&at;sp2"/>
-  </at:AtomType> // Fix79 // done in CDKAtomTypeMatcher //
-
- <at:AtomType rdf:ID="B.3plus">
-    <at:formalCharge>3</at:formalCharge>
-    <at:hasElement rdf:resource="&elem;B"/>
-    <at:formalNeighbourCount>4</at:formalNeighbourCount>
-    <at:lonePairCount>0</at:lonePairCount>
-    <at:piBondCount>0</at:piBondCount>
-    <at:hybridization rdf:resource="&at;sp3"/>
-  </at:AtomType> // Fix80 // done in CDKAtomTypeMatcher //
-
-  <at:AtomType rdf:ID="F.minus.1">
-    <at:formalCharge>-1</at:formalCharge>
-    <at:hasElement rdf:resource="&elem;F"/>
-    <at:formalNeighbourCount>1</at:formalNeighbourCount>
-    <at:lonePairCount>3</at:lonePairCount>
-    <at:piBondCount>0</at:piBondCount>
-    <at:hybridization rdf:resource="&at;sp3"/>
-  </at:AtomType> // Fix81 // done in CDKAtomTypeMatcher //
 
  <at:AtomType rdf:ID="Ru.6">
     <at:formalCharge>0</at:formalCharge>
@@ -2128,7 +2042,6 @@
    <at:piBondCount>0</at:piBondCount>
   </at:AtomType>//Fix 112//
 
-
   <at:AtomType rdf:ID="V.3minus.4">
     <at:formalCharge>-3</at:formalCharge>
     <at:hasElement rdf:resource="&elem;V"/>
@@ -2138,7 +2051,16 @@
     <at:hybridization rdf:resource="&at;sp3"/>
   </at:AtomType> // Fix84 // done in CDKAtomTypeMatcher //
 
-<at:AtomType rdf:ID="Au.1">
+  <at:AtomType rdf:ID="V.3minus">
+    <at:formalCharge>-3</at:formalCharge>
+    <at:hasElement rdf:resource="&elem;V"/>
+    <at:formalNeighbourCount>6</at:formalNeighbourCount>
+    <at:lonePairCount>0</at:lonePairCount>
+    <at:piBondCount>0</at:piBondCount>
+    <at:hybridization rdf:resource="&at;octahedral"/>
+  </at:AtomType>
+
+   <at:AtomType rdf:ID="Au.1">
     <at:formalCharge>0</at:formalCharge>
     <at:hasElement rdf:resource="&elem;Au"/>
     <at:formalNeighbourCount>1</at:formalNeighbourCount>
@@ -2146,34 +2068,33 @@
     <at:piBondCount>0</at:piBondCount>
       </at:AtomType> // Fix85 // done in CDKAtomTypeMatcher //
 
-<at:AtomType rdf:ID="Li.plus">
-    <at:formalCharge>1</at:formalCharge>
-    <at:hasElement rdf:resource="&elem;Li"/>
-    <at:formalNeighbourCount>0</at:formalNeighbourCount>
-    <at:lonePairCount>0</at:lonePairCount>
-    <at:piBondCount>0</at:piBondCount>
-      </at:AtomType> // Fix86 // done in CDKAtomTypeMatcher //
-
-<at:AtomType rdf:ID="Ca.2plus.2">
+   <at:AtomType rdf:ID="Ca.2plus.2">
     <at:formalCharge>2</at:formalCharge>
     <at:hasElement rdf:resource="&elem;Ca"/>
     <at:formalNeighbourCount>2</at:formalNeighbourCount>
     <at:piBondCount>0</at:piBondCount>
     </at:AtomType> // Fix88 just in case if Ca is bonded covalently with O  //done in CDKAtomTypeMatcher //
 
-<at:AtomType rdf:ID="Ca.2">
+   <at:AtomType rdf:ID="Ca.2">
     <at:formalCharge>0</at:formalCharge>
     <at:hasElement rdf:resource="&elem;Ca"/>
     <at:formalNeighbourCount>2</at:formalNeighbourCount>
     <at:piBondCount>0</at:piBondCount>
     </at:AtomType> // Fix89 //done in CDKAtomTypeMatcher //
 
-    <at:AtomType rdf:ID="As.4plus">
-    <at:formalCharge>4</at:formalCharge>
-    <at:hasElement rdf:resource="&elem;As"/>
-    <at:formalNeighbourCount>4</at:formalNeighbourCount>
+  <at:AtomType rdf:ID="Ca.2plus">
+    <at:formalCharge>2</at:formalCharge>
+    <at:hasElement rdf:resource="&elem;Ca"/>
+    <at:formalNeighbourCount>0</at:formalNeighbourCount>
     <at:piBondCount>0</at:piBondCount>
-    </at:AtomType> // Fix90 //done in CDKAtomTypeMatcher //
+    </at:AtomType>
+
+  <at:AtomType rdf:ID="Ca.1">
+    <at:formalCharge>0</at:formalCharge>
+    <at:hasElement rdf:resource="&elem;Ca"/>
+    <at:formalNeighbourCount>1</at:formalNeighbourCount>
+    <at:piBondCount>1</at:piBondCount>
+    </at:AtomType>//Fix 104
 
   <at:AtomType rdf:ID="Pt.2plus">
     <at:formalCharge>2</at:formalCharge>
@@ -2203,27 +2124,6 @@
     <at:piBondCount>0</at:piBondCount>
   </at:AtomType>
 
-  <at:AtomType rdf:ID="Co.2plus">
-    <at:formalCharge>2</at:formalCharge>
-    <at:hasElement rdf:resource="&elem;Co"/>
-    <at:formalNeighbourCount>0</at:formalNeighbourCount>
-    <at:piBondCount>0</at:piBondCount>
-  </at:AtomType>
-
-  <at:AtomType rdf:ID="Co.metallic">
-    <at:formalCharge>0</at:formalCharge>
-    <at:hasElement rdf:resource="&elem;Co"/>
-    <at:formalNeighbourCount>0</at:formalNeighbourCount>
-    <at:piBondCount>0</at:piBondCount>
-  </at:AtomType>
-
-  <at:AtomType rdf:ID="Cu.2plus">
-    <at:formalCharge>2</at:formalCharge>
-    <at:hasElement rdf:resource="&elem;Cu"/>
-    <at:formalNeighbourCount>0</at:formalNeighbourCount>
-    <at:piBondCount>0</at:piBondCount>
-    </at:AtomType>
-
   <at:AtomType rdf:ID="Sn.sp3">
     <at:formalCharge>0</at:formalCharge>
     <at:hasElement rdf:resource="&elem;Sn"/>
@@ -2232,6 +2132,13 @@
     <at:piBondCount>0</at:piBondCount>
     <at:hybridization rdf:resource="&at;sp3"/>
   </at:AtomType>
+
+    <at:AtomType rdf:ID="As.4plus">
+    <at:formalCharge>4</at:formalCharge>
+    <at:hasElement rdf:resource="&elem;As"/>
+    <at:formalNeighbourCount>4</at:formalNeighbourCount>
+    <at:piBondCount>0</at:piBondCount>
+    </at:AtomType> // Fix90 //done in CDKAtomTypeMatcher //
 
   <at:AtomType rdf:ID="As.plus">
     <at:formalCharge>1</at:formalCharge>
@@ -2251,12 +2158,37 @@
     <at:hybridization rdf:resource="&at;sp3"/>
   </at:AtomType>
 
-  <at:AtomType rdf:ID="Hg.minus">
-    <at:formalCharge>-1</at:formalCharge>
-    <at:hasElement rdf:resource="&elem;Hg"/>
+    <at:AtomType rdf:ID="As.5">
+    <at:formalCharge>0</at:formalCharge>
+    <at:hasElement rdf:resource="&elem;As"/>
+    <at:formalNeighbourCount>4</at:formalNeighbourCount>
+    <at:lonePairCount>0</at:lonePairCount>
+    <at:piBondCount>1</at:piBondCount>
+    <at:hybridization rdf:resource="&at;sp3"/>
+    </at:AtomType> // Fix39 //done in CDKAtomTypeMatcher //
+
+    <at:AtomType rdf:ID="As.2">
+    <at:formalCharge>0</at:formalCharge>
+    <at:hasElement rdf:resource="&elem;As"/>
     <at:formalNeighbourCount>2</at:formalNeighbourCount>
+    <at:lonePairCount>1</at:lonePairCount>
+    <at:piBondCount>1</at:piBondCount>
+    <at:hybridization rdf:resource="&at;sp2"/>
+  </at:AtomType> // Fix40 //done in CDKAtomTypeMatcher //
+
+    <at:AtomType rdf:ID="As.3plus">
+    <at:formalCharge>3</at:formalCharge>
+    <at:hasElement rdf:resource="&elem;As"/>
+    <at:formalNeighbourCount>0</at:formalNeighbourCount>
     <at:piBondCount>0</at:piBondCount>
-    </at:AtomType>
+    </at:AtomType>  // Fix41 //done in CDKAtomTypeMatcher //
+
+    <at:AtomType rdf:ID="As.minus">
+    <at:formalCharge>-1</at:formalCharge>
+    <at:hasElement rdf:resource="&elem;As"/>
+    <at:formalNeighbourCount>6</at:formalNeighbourCount>
+    <at:piBondCount>0</at:piBondCount>
+    </at:AtomType> // Fix42 //done in CDKAtomTypeMatcher //
 
   <at:AtomType rdf:ID="Po">
     <at:formalCharge>0</at:formalCharge>
@@ -2278,6 +2210,20 @@
     <at:formalNeighbourCount>0</at:formalNeighbourCount>
     <at:piBondCount>0</at:piBondCount>
     </at:AtomType>
+
+   <at:AtomType rdf:ID="Zn.metallic">
+    <at:formalCharge>0</at:formalCharge>
+    <at:hasElement rdf:resource="&elem;Zn"/>
+    <at:formalNeighbourCount>0</at:formalNeighbourCount>
+    <at:piBondCount>0</at:piBondCount>
+    </at:AtomType>  // Fix44 //done in CDKAtomTypeMatcher //
+
+    <at:AtomType rdf:ID="Zn.1">
+    <at:formalCharge>0</at:formalCharge>
+    <at:hasElement rdf:resource="&elem;Zn"/>
+    <at:formalNeighbourCount>1</at:formalNeighbourCount>
+    <at:piBondCount>1</at:piBondCount>
+    </at:AtomType>  // Fix22 //done in CDKAtomTypeMatcher //pibond left//
 
     <at:AtomType rdf:ID="Mn.metallic">
     <at:formalCharge>0</at:formalCharge>
@@ -2384,15 +2330,6 @@
     <at:hybridization rdf:resource="&at;octahedral"/>
   </at:AtomType>
 
-  <at:AtomType rdf:ID="V.3minus">
-    <at:formalCharge>-3</at:formalCharge>
-    <at:hasElement rdf:resource="&elem;V"/>
-    <at:formalNeighbourCount>6</at:formalNeighbourCount>
-    <at:lonePairCount>0</at:lonePairCount>
-    <at:piBondCount>0</at:piBondCount>
-    <at:hybridization rdf:resource="&at;octahedral"/>
-  </at:AtomType>
-
   <at:AtomType rdf:ID="Ti.sp3">
     <at:formalCharge>0</at:formalCharge>
     <at:hasElement rdf:resource="&elem;Ti"/>
@@ -2411,6 +2348,13 @@
     <at:hybridization rdf:resource="&at;sp3"/>
   </at:AtomType>
 
+<at:AtomType rdf:ID="Be.neutral">
+    <at:formalCharge>0</at:formalCharge>
+    <at:hasElement rdf:resource="&elem;Be"/>
+    <at:formalNeighbourCount>0</at:formalNeighbourCount>
+    <at:piBondCount>0</at:piBondCount>
+    </at:AtomType> // Fix68 // done in CDKAtomTypeMatcher //
+
   <at:AtomType rdf:ID="B.minus">
     <at:formalCharge>-1</at:formalCharge>
     <at:hasElement rdf:resource="&elem;B"/>
@@ -2427,7 +2371,17 @@
     <at:lonePairCount>0</at:lonePairCount>
     <at:piBondCount>0</at:piBondCount>
     <at:hybridization rdf:resource="&at;sp3"/>
-  </at:AtomType>
+    </at:AtomType>
+
+ <at:AtomType rdf:ID="B.3plus">
+    <at:formalCharge>3</at:formalCharge>
+    <at:hasElement rdf:resource="&elem;B"/>
+    <at:formalNeighbourCount>4</at:formalNeighbourCount>
+    <at:lonePairCount>0</at:lonePairCount>
+    <at:piBondCount>0</at:piBondCount>
+    <at:hybridization rdf:resource="&at;sp3"/>
+  </at:AtomType> // Fix80 // done in CDKAtomTypeMatcher //
+
 
   <at:AtomType rdf:ID="Ga.3plus">
     <at:formalCharge>3</at:formalCharge>
@@ -2456,7 +2410,16 @@
     <at:hybridization rdf:resource="&at;sp3"/>
   </at:AtomType>
 
- <at:AtomType rdf:ID="Te.2">
+   <at:AtomType rdf:ID="Ge.3">
+    <at:formalCharge>0</at:formalCharge>
+    <at:hasElement rdf:resource="&elem;Ge"/>
+    <at:formalNeighbourCount>3</at:formalNeighbourCount>
+    <at:lonePairCount>0</at:lonePairCount>
+    <at:piBondCount>1</at:piBondCount>
+    <at:hybridization rdf:resource="&at;sp2"/>
+    </at:AtomType> // Fix79 // done in CDKAtomTypeMatcher //
+
+   <at:AtomType rdf:ID="Te.2">
     <at:formalCharge>0</at:formalCharge>
     <at:hasElement rdf:resource="&elem;Te"/>
     <at:formalNeighbourCount>2</at:formalNeighbourCount>
@@ -2465,7 +2428,7 @@
     <at:hybridization rdf:resource="&at;sp3"/>
   </at:AtomType>
 
-<at:AtomType rdf:ID="Te.4plus">
+  <at:AtomType rdf:ID="Te.4plus">
     <at:formalCharge>4</at:formalCharge>
     <at:hasElement rdf:resource="&elem;Te"/>
     <at:formalNeighbourCount>0</at:formalNeighbourCount>
