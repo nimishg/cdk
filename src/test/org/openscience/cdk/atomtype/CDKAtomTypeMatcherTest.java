@@ -1861,7 +1861,7 @@ public class CDKAtomTypeMatcherTest extends AbstractCDKAtomTypeTest {
         mol.addBond(1, 4, CDKConstants.BONDORDER_DOUBLE);
 
         String[] expectedTypes = new String[]{
-            "O.sp3", "Cl.4", "O.sp2", "O.sp2", "O.sp2" 
+            "O.sp3", "Cl.4", "O.sp2", "O.sp2", "O.sp2"
         }; // Cl.perchlorate changed to Cl.4
         assertAtomTypes(testedAtomTypes, expectedTypes, mol);
     }
