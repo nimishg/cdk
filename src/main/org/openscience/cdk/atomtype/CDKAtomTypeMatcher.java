@@ -2098,7 +2098,7 @@ public class CDKAtomTypeMatcher implements IAtomTypeMatcher {
                     if (isAcceptable(atom, atomContainer, type)) {
                         return type;// Fix10 //
                     }
-                } 
+                }
             } else if ((atom.getFormalCharge() != null
                     && atom.getFormalCharge() == +3)) {
                 int neighbors = atomContainer.getConnectedAtomsCount(atom);
