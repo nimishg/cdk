@@ -1351,7 +1351,7 @@ public class CDKAtomTypeMatcher implements IAtomTypeMatcher {
             // no idea how to deal with this yet
             return null;
         } else if (neighborcount == 0) {
-            if (atom.getAtomicNumber() == 15) {
+            if (atom.getMassNumber() == 32) {
                 IAtomType type = getAtomType("P.32");
                 if (isAcceptable(atom, atomContainer, type)) {
                     return type;
