@@ -482,7 +482,7 @@
     <at:hasElement rdf:resource="&elem;N"/>
     <at:formalNeighbourCount>1</at:formalNeighbourCount>
     <at:lonePairCount>2</at:lonePairCount>
-    <at:piBondCount>2</at:piBondCount>
+    <at:piBondCount>0</at:piBondCount>
     <at:hybridization rdf:resource="&at;sp2"/>
     </at:AtomType>//Fix 113//
 
