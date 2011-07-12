@@ -58,37 +58,6 @@ public class CDKAtomTypeMatcherEBITest extends AbstractCDKAtomTypeTest {
 
     private static Map<String, Integer> testedAtomTypes = new HashMap<String, Integer>();
 
-    private static IAtomContainer getKEGGMolFile(String link) throws CDKException {
-        IAtomContainer mol = null;
-        try {
-            URL url;
-            URLConnection urlConn;
-            DataInputStream dis;
-
-            url = new URL("http://www.genome.jp/dbget-bin/www_bget?-f+m+compound+" + link);
-
-            // Note:  a more portable URL: 
-            //url = new URL(getCodeBase().toString() + "/ToDoList/ToDoList.txt");
-
-            urlConn = url.openConnection();
-            urlConn.setDoInput(true);
-            urlConn.setUseCaches(false);
-
-            dis = new DataInputStream(urlConn.getInputStream());
-            MDLV2000Reader mdlReader = new MDLV2000Reader(dis);
-            mol = mdlReader.read(new Molecule());
-            //            String s;
-
-//            while ((s = dis.readUTF()) != null) {
-//               sb.append(s);
-//            }
-            dis.close();
-        } catch (MalformedURLException mue) {
-        } catch (IOException ioe) {
-        }
-        return mol;
-    }
-
     private IAtomContainer getMolFromFile(String molName) throws CDKException {
         String filename = "data" + File.separator + "mdl" + File.separator + molName + ".mol";
         InputStream ins = this.getClass().getClassLoader().getResourceAsStream(filename);
