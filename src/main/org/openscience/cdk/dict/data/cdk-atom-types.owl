@@ -495,15 +495,6 @@
     <at:hybridization rdf:resource="&at;sp1"/>
     </at:AtomType> // changed
 
-    <at:AtomType rdf:ID="N.2minus.planar">
-    <at:formalCharge>-2</at:formalCharge>
-    <at:hasElement rdf:resource="&elem;N"/>
-    <at:formalNeighbourCount>1</at:formalNeighbourCount>
-    <at:lonePairCount>2</at:lonePairCount>
-    <at:piBondCount>2</at:piBondCount>
-    <at:hybridization rdf:resource="&at;planar"/>
-    </at:AtomType> // Fix43 //done in CDKAtomTypeMatcher //
-
      <at:AtomType rdf:ID="N.planar3">
     <at:formalCharge>0</at:formalCharge>
     <at:hasElement rdf:resource="&elem;N"/>
@@ -632,15 +623,6 @@
     <at:piBondCount>1</at:piBondCount>
     <at:hybridization rdf:resource="&at;sp2"/>
     </at:AtomType> // changed
-
-    <at:AtomType rdf:ID="S.sp2.2">
-    <at:formalCharge>0</at:formalCharge>
-    <at:hasElement rdf:resource="&elem;S"/>
-    <at:formalNeighbourCount>2</at:formalNeighbourCount>
-    <at:lonePairCount>1</at:lonePairCount>
-    <at:piBondCount>2</at:piBondCount>
-    <at:hybridization rdf:resource="&at;sp2"/>
-    </at:AtomType>//fix102/52
 
     <at:AtomType rdf:ID="S.sp3">
     <at:formalCharge>0</at:formalCharge>
@@ -1045,15 +1027,6 @@
     <at:formalNeighbourCount>2</at:formalNeighbourCount>
     <at:lonePairCount>3</at:lonePairCount>
     <at:piBondCount>0</at:piBondCount>
-    <at:hybridization rdf:resource="&at;sp3d2"/>
-  </at:AtomType>
-
-  <at:AtomType rdf:ID="I.minus.5">
-    <at:formalCharge>-1</at:formalCharge>
-    <at:hasElement rdf:resource="&elem;I"/>
-    <at:formalNeighbourCount>2</at:formalNeighbourCount>
-    <at:lonePairCount>3</at:lonePairCount>
-    <at:piBondCount>0</at:piBondCount>
     <at:hybridization rdf:resource="&at;sp3d1"/>
   </at:AtomType>
 
@@ -1210,7 +1183,7 @@
     <at:formalCharge>0</at:formalCharge>
     <at:hasElement rdf:resource="&elem;P"/>
     <at:formalNeighbourCount>3</at:formalNeighbourCount>
-    <at:lonePairCount>0</at:lonePairCount>
+    <at:lonePairCount>1</at:lonePairCount>
     <at:piBondCount>0</at:piBondCount>
     <at:hybridization rdf:resource="&at;sp3"/>
   </at:AtomType>//Fix 97
@@ -2132,13 +2105,6 @@
     <at:piBondCount>0</at:piBondCount>
     <at:hybridization rdf:resource="&at;sp3"/>
   </at:AtomType>
-
-    <at:AtomType rdf:ID="As.4plus">
-    <at:formalCharge>4</at:formalCharge>
-    <at:hasElement rdf:resource="&elem;As"/>
-    <at:formalNeighbourCount>4</at:formalNeighbourCount>
-    <at:piBondCount>0</at:piBondCount>
-    </at:AtomType> // Fix90 //done in CDKAtomTypeMatcher //
 
   <at:AtomType rdf:ID="As.plus">
     <at:formalCharge>1</at:formalCharge>
